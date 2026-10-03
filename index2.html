@@ -8,20 +8,38 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <style>
 :root{
---bg:#070a10;--field:#090e16;--side:#080c13ee;--panel:#0d131ce8;
---p:#101722;--p2:#0c121b;--line:#202b3b;--txt:#f4f7fb;
---mut:#8490a2;--blue:#5b8cff;--green:#38d996;--yellow:#ffc857;
---pink:#ff5d9e;--purple:#9a7cff;--cyan:#28d7e8;--red:#ff5f6d;
+--bg:#070a10;
+--field:#090e16;
+--side:#080c13ee;
+--panel:#0d131ce8;
+--p:#101722;
+--p2:#0c121b;
+--line:#202b3b;
+--txt:#f4f7fb;
+--mut:#8490a2;
+--blue:#5b8cff;
+--green:#38d996;
+--yellow:#ffc857;
+--pink:#ff5d9e;
+--purple:#9a7cff;
+--cyan:#28d7e8;
+--red:#ff5f6d;
 --orange:#ff8a4c
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent
+}
+
+html{
+scroll-behavior:smooth
+}
 
 body{
 margin:0;
@@ -33,17 +51,36 @@ color:var(--txt);
 font-family:"DM Sans",sans-serif
 }
 
-button,input,select,textarea{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
+button,input,select,textarea{
+font:inherit
+}
 
-::-webkit-scrollbar{width:7px}
-::-webkit-scrollbar-thumb{background:#29364a;border-radius:20px}
+button{
+cursor:pointer
+}
+
+a{
+text-decoration:none;
+color:inherit
+}
+
+::-webkit-scrollbar{
+width:7px
+}
+
+::-webkit-scrollbar-thumb{
+background:#29364a;
+border-radius:20px
+}
 
 @media(max-width:760px){
-::-webkit-scrollbar{display:none}
-*{scrollbar-width:none}
+::-webkit-scrollbar{
+display:none
+}
+
+*{
+scrollbar-width:none
+}
 }
 
 body.light{
@@ -59,10 +96,23 @@ radial-gradient(circle at 90% 20%,#f5ddeb,transparent 28%),
 var(--bg)
 }
 
-body.light .side{border-right-color:#dce2ea}
-body.light .nav button{color:#667085}
-body.light .nav button:hover{background:#eef2f7;color:#18212f}
-body.light .nav button.active{color:#18212f}
+body.light .side{
+border-right-color:#dce2ea
+}
+
+body.light .nav button{
+color:#667085
+}
+
+body.light .nav button:hover{
+background:#eef2f7;
+color:#18212f
+}
+
+body.light .nav button.active{
+color:#18212f
+}
+
 body.light .owner,
 body.light .task,
 body.light .row,
@@ -75,21 +125,25 @@ body.light .moneybox{
 background:#fff;
 border-color:#dce2ea
 }
+
 body.light .hero{
 background:linear-gradient(135deg,#5b8cff12,#9a7cff08,#28d7e806);
 border-color:#d5ddea
 }
+
 body.light .mode,
 body.light .quick button{
 background:#f7f9fb;
 border-color:#dce2ea;
 color:#344054
 }
+
 body.light .btn{
 background:#eef2f7;
 border-color:#d5dce6;
 color:#18212f
 }
+
 body.light .field input,
 body.light .input,
 body.light .select,
@@ -98,12 +152,14 @@ background:#fff;
 color:#18212f;
 border-color:#d5dce6
 }
-body.light .auth{box-shadow:0 30px 90px #34405422}
-body.light .empty{border-color:#cfd7e3}
+
+body.light .empty{
+border-color:#cfd7e3
+}
 
 
 /* =========================================================
-   PRIVATE FULLSCREEN UNLOCK
+   TOMORROW-STYLE PRIVATE UNLOCK
 ========================================================= */
 
 #auth{
@@ -115,23 +171,36 @@ place-items:center;
 padding:28px;
 overflow:hidden;
 background:
-radial-gradient(circle at 20% 20%,#5b8cff18,transparent 32%),
-radial-gradient(circle at 80% 30%,#9a7cff14,transparent 30%),
-radial-gradient(circle at 50% 100%,#28d7e810,transparent 35%),
-#070a10
+radial-gradient(circle at 18% 18%,#5b8cff18,transparent 31%),
+radial-gradient(circle at 82% 24%,#9a7cff18,transparent 30%),
+radial-gradient(circle at 50% 105%,#28d7e814,transparent 36%),
+#070a10;
+isolation:isolate;
+transition:
+opacity .55s cubic-bezier(.2,.8,.2,1),
+visibility .55s,
+transform .55s cubic-bezier(.2,.8,.2,1)
+}
+
+#auth.tm-auth-hidden{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:scale(1.025)
 }
 
 #auth::before{
 content:"";
 position:absolute;
-width:520px;
-height:520px;
+width:600px;
+height:600px;
 border-radius:50%;
-border:1px solid #ffffff08;
+border:1px solid #ffffff09;
 box-shadow:
 0 0 0 90px #ffffff03,
-0 0 0 180px #ffffff02;
-animation:authOrbit 12s linear infinite
+0 0 0 180px #ffffff02,
+0 0 0 275px #ffffff01;
+animation:tmAuthOrbit 18s linear infinite
 }
 
 #auth::after{
@@ -142,176 +211,576 @@ background:
 linear-gradient(#ffffff04 1px,transparent 1px),
 linear-gradient(90deg,#ffffff04 1px,transparent 1px);
 background-size:55px 55px;
-mask-image:linear-gradient(to bottom,transparent,#000 25%,#000 75%,transparent);
+mask-image:linear-gradient(
+to bottom,
+transparent,
+#000 20%,
+#000 80%,
+transparent
+);
+pointer-events:none;
+opacity:.8
+}
+
+@keyframes tmAuthOrbit{
+0%{
+transform:rotate(0deg) scale(1)
+}
+50%{
+transform:rotate(180deg) scale(1.055)
+}
+100%{
+transform:rotate(360deg) scale(1)
+}
+}
+
+.tm-login-shell{
+position:relative;
+z-index:4;
+width:min(920px,88vw);
+min-height:min(620px,78vh);
+display:grid;
+grid-template-columns:1.05fr .95fr;
+align-items:center;
+gap:20px;
+animation:tmLoginEnter .8s cubic-bezier(.2,.8,.2,1) both
+}
+
+@keyframes tmLoginEnter{
+from{
+opacity:0;
+transform:translateY(24px) scale(.975)
+}
+to{
+opacity:1;
+transform:none
+}
+}
+
+.tm-login-intro{
+position:relative;
+min-height:510px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:45px 30px 45px 35px
+}
+
+.tm-login-orbit{
+position:absolute;
+left:2px;
+top:50%;
+width:340px;
+height:340px;
+transform:translateY(-50%);
+border:1px solid #ffffff07;
+border-radius:50%;
 pointer-events:none
 }
 
-@keyframes authOrbit{
-from{transform:rotate(0deg) scale(1)}
-50%{transform:rotate(180deg) scale(1.08)}
-to{transform:rotate(360deg) scale(1)}
+.tm-login-orbit::before,
+.tm-login-orbit::after{
+content:"";
+position:absolute;
+border-radius:50%
 }
 
-.auth{
+.tm-login-orbit::before{
+inset:34px;
+border:1px solid #5b8cff18;
+animation:tmRingRotate 13s linear infinite
+}
+
+.tm-login-orbit::after{
+width:7px;
+height:7px;
+right:39px;
+top:44px;
+background:#5b8cff;
+box-shadow:
+0 0 18px #5b8cffaa,
+0 0 45px #5b8cff55;
+animation:tmDotOrbit 8s linear infinite
+}
+
+@keyframes tmRingRotate{
+from{
+transform:rotate(0)
+}
+to{
+transform:rotate(360deg)
+}
+}
+
+@keyframes tmDotOrbit{
+from{
+transform:rotate(0deg) translateX(142px) rotate(0deg)
+}
+to{
+transform:rotate(360deg) translateX(142px) rotate(-360deg)
+}
+}
+
+.tm-login-brand{
 position:relative;
 z-index:2;
-width:min(430px,100%);
-padding:20px;
-background:transparent;
-border:0;
-box-shadow:none;
-text-align:center;
-animation:authEnter .7s cubic-bezier(.2,.8,.2,1)
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:31px
 }
 
-@keyframes authEnter{
-from{opacity:0;transform:translateY(20px) scale(.97)}
-to{opacity:1;transform:none}
-}
-
-.auth .logo{
-width:82px;
-height:82px;
-margin:0 auto 25px;
-border-radius:24px;
-padding:0;
-background:linear-gradient(135deg,#5b8cff,#9a7cff);
-box-shadow:
-0 0 0 1px #ffffff15,
-0 18px 55px #5b8cff25;
+.tm-login-logo{
+width:74px;
+height:74px;
+border-radius:23px;
 display:grid;
 place-items:center;
 overflow:hidden;
-animation:logoFloat 4s ease-in-out infinite
+background:
+linear-gradient(135deg,#5b8cff,#7869ff 54%,#9a7cff);
+box-shadow:
+0 0 0 1px #ffffff16,
+0 18px 55px #5b8cff25;
+animation:tmLogoFloat 4s ease-in-out infinite
 }
 
-.auth .logo img{
+.tm-login-logo img{
 width:100%;
 height:100%;
 object-fit:contain;
 padding:8px
 }
 
-@keyframes logoFloat{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-5px)}
+@keyframes tmLogoFloat{
+0%,100%{
+transform:translateY(0)
+}
+50%{
+transform:translateY(-6px)
+}
 }
 
-.auth h1{
+.tm-login-eyebrow{
+margin:0 0 7px;
+font-size:9px;
+font-weight:700;
+letter-spacing:.2em;
+text-transform:uppercase;
+color:#8191aa
+}
+
+.tm-login-brand-name{
+font:600 17px "Space Grotesk",sans-serif;
+color:#e8edf5;
+letter-spacing:-.02em
+}
+
+.tm-login-intro h1{
+position:relative;
+z-index:2;
+max-width:500px;
 margin:0;
-font:700 32px "Space Grotesk",sans-serif;
-letter-spacing:-.03em;
-color:#f7f9fc
+font:500 clamp(43px,5vw,68px)/.99 "Playfair Display",serif;
+letter-spacing:-.045em;
+color:#f6f7fb
 }
 
-.auth p{
-max-width:330px;
-margin:9px auto 27px;
-color:#78869a;
-font-size:11px;
+.tm-login-intro h1 span{
+display:block;
+color:#859dff
+}
+
+.tm-login-description{
+position:relative;
+z-index:2;
+max-width:430px;
+margin:24px 0 0;
+color:#758398;
+font-size:12px;
+line-height:1.8
+}
+
+.tm-login-caption{
+position:relative;
+z-index:2;
+display:flex;
+align-items:center;
+gap:9px;
+margin-top:30px;
+font-size:9px;
+letter-spacing:.08em;
+text-transform:uppercase;
+color:#55637a
+}
+
+.tm-login-caption i{
+font-size:8px;
+color:#38d996;
+text-shadow:0 0 12px #38d99688
+}
+
+.tm-login-form{
+width:min(390px,100%);
+justify-self:end;
+padding:31px;
+border:1px solid #ffffff0d;
+border-radius:26px;
+background:
+linear-gradient(
+145deg,
+#0d131ce8,
+#090e16d9
+);
+box-shadow:
+0 30px 90px #0007,
+inset 0 1px #ffffff05;
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px)
+}
+
+.tm-form-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:27px
+}
+
+.tm-form-top strong{
+font:600 18px "Space Grotesk",sans-serif;
+letter-spacing:-.02em
+}
+
+.tm-form-top span{
+padding:6px 9px;
+border:1px solid #38d99622;
+border-radius:99px;
+color:#5fdaa1;
+font-size:8px;
+text-transform:uppercase;
+letter-spacing:.13em;
+background:#38d99608
+}
+
+.tm-form-copy{
+margin:0 0 23px;
+color:#6f7d92;
+font-size:10px;
 line-height:1.65
 }
 
-.auth .field{
-margin:11px 0;
-text-align:left
+.tm-field{
+margin:0 0 13px
 }
 
-.auth .field label{
-display:block;
+.tm-field label{
+display:flex;
+align-items:center;
+justify-content:space-between;
 margin:0 0 7px 3px;
-color:#69778b;
-font-size:9px;
-text-transform:uppercase;
-letter-spacing:.14em
+color:#77869c;
+font-size:8px;
+font-weight:700;
+letter-spacing:.15em;
+text-transform:uppercase
 }
 
-.auth .field input{
+.tm-field-wrap{
+position:relative
+}
+
+.tm-field input{
 width:100%;
-height:50px;
+height:51px;
+padding:0 14px;
 border:1px solid #202d40;
 border-radius:14px;
-background:#0b1119aa;
-color:#f4f7fb;
-padding:0 15px;
 outline:none;
-backdrop-filter:blur(12px);
-transition:.22s ease
+background:#090f17cc;
+color:#f4f7fb;
+font-size:11px;
+transition:
+border-color .22s,
+background .22s,
+box-shadow .22s
 }
 
-.auth .field input::placeholder{color:#4f5c70}
+.tm-field.password input{
+padding-right:45px
+}
 
-.auth .field input:focus{
-border-color:#5b8cff;
-background:#0d1420;
+.tm-field input::placeholder{
+color:#4d5a6e
+}
+
+.tm-field input:focus{
+border-color:#5b8cff88;
+background:#0c131d;
 box-shadow:
-0 0 0 3px #5b8cff12,
-0 10px 30px #0003
+0 0 0 3px #5b8cff0e,
+0 12px 30px #0003
 }
 
-.authbtn{
+.tm-password-toggle{
+position:absolute;
+right:7px;
+top:7px;
+width:37px;
+height:37px;
+border:0;
+border-radius:10px;
+background:transparent;
+color:#5d6b80;
+display:grid;
+place-items:center;
+font-size:11px;
+transition:.2s
+}
+
+.tm-password-toggle:hover{
+background:#ffffff07;
+color:#aeb9c9
+}
+
+.tm-login-message{
+display:none;
+margin:0 0 13px;
+padding:10px 12px;
+border:1px solid #ff5f6d2b;
+border-radius:12px;
+background:#ff5f6d09;
+color:#ff8a93;
+font-size:9px;
+line-height:1.5
+}
+
+.tm-login-message.show{
+display:block;
+animation:tmMessageIn .22s ease
+}
+
+.tm-login-message.success{
+border-color:#38d99628;
+background:#38d99608;
+color:#63e2aa
+}
+
+@keyframes tmMessageIn{
+from{
+opacity:0;
+transform:translateY(-4px)
+}
+to{
+opacity:1;
+transform:none
+}
+}
+
+.tm-auth-btn{
+position:relative;
 width:100%;
 height:52px;
-margin-top:13px;
+margin-top:5px;
 border:0;
 border-radius:15px;
+background:
+linear-gradient(
+135deg,
+#5b8cff,
+#7869ff 54%,
+#9a7cff
+);
 color:#fff;
-font-size:12px;
+font-size:11px;
 font-weight:700;
 letter-spacing:.01em;
-background:linear-gradient(135deg,#5b8cff,#7869ff 55%,#9a7cff);
-box-shadow:0 14px 35px #5b8cff22;
-transition:.22s ease
+box-shadow:
+0 14px 38px #5b8cff25,
+inset 0 1px #ffffff22;
+transition:
+transform .22s,
+box-shadow .22s,
+filter .22s
 }
 
-.authbtn:hover{
+.tm-auth-btn:hover{
 transform:translateY(-2px);
-box-shadow:0 18px 42px #5b8cff32
+box-shadow:
+0 18px 46px #5b8cff35,
+inset 0 1px #ffffff22
 }
 
-.authbtn:active{transform:translateY(0) scale(.99)}
+.tm-auth-btn:active{
+transform:scale(.985)
+}
 
-.authbtn:disabled{
-opacity:.75;
+.tm-auth-btn:disabled{
 cursor:wait;
+opacity:.8;
 transform:none
 }
 
-.auth .error{
-display:none;
-margin:0 0 12px;
-padding:10px 12px;
-border:1px solid #ff5f6d30;
-border-radius:11px;
-background:#ff5f6d0b;
-color:#ff8791;
-font-size:10px;
-text-align:left
+.tm-login-footer{
+margin:20px 0 0;
+padding-top:17px;
+border-top:1px solid #ffffff08;
+text-align:center;
+color:#4f5c70;
+font-size:8px;
+letter-spacing:.03em
 }
 
-@media(max-width:600px){
+.tm-login-footer i{
+margin-right:5px;
+color:#5b8cff
+}
 
-#auth{padding:18px}
+.tm-login-shake{
+animation:tmShake .42s cubic-bezier(.36,.07,.19,.97)
+}
+
+@keyframes tmShake{
+10%,90%{
+transform:translateX(-2px)
+}
+20%,80%{
+transform:translateX(4px)
+}
+30%,50%,70%{
+transform:translateX(-6px)
+}
+40%,60%{
+transform:translateX(6px)
+}
+}
+
+@media(max-width:780px){
+
+#auth{
+padding:18px
+}
 
 #auth::before{
-width:360px;
-height:360px
+width:390px;
+height:390px
 }
 
-.auth{width:min(370px,100%)}
+.tm-login-shell{
+width:min(450px,94vw);
+min-height:auto;
+display:block
+}
 
-.auth .logo{
-width:72px;
-height:72px;
-border-radius:21px;
+.tm-login-intro{
+min-height:auto;
+padding:5px 8px 22px;
+text-align:center;
+align-items:center
+}
+
+.tm-login-orbit{
+width:250px;
+height:250px;
+left:50%;
+top:50%;
+transform:translate(-50%,-55%);
+opacity:.55
+}
+
+.tm-login-brand{
+margin-bottom:20px
+}
+
+.tm-login-logo{
+width:61px;
+height:61px;
+border-radius:19px
+}
+
+.tm-login-brand-name{
+font-size:15px
+}
+
+.tm-login-intro h1{
+font-size:39px;
+line-height:1
+}
+
+.tm-login-description{
+max-width:360px;
+margin-top:15px;
+font-size:10px
+}
+
+.tm-login-caption{
+margin-top:15px
+}
+
+.tm-login-form{
+justify-self:auto;
+width:100%;
+padding:23px;
+border-radius:22px
+}
+
+.tm-form-top{
 margin-bottom:21px
 }
 
-.auth h1{font-size:27px}
+.tm-form-copy{
+margin-bottom:18px
+}
 
-.auth p{margin-bottom:22px}
+}
 
-.auth .field input{height:48px}
+@media(max-width:430px){
+
+#auth{
+padding:13px
+}
+
+.tm-login-intro{
+padding-bottom:17px
+}
+
+.tm-login-logo{
+width:55px;
+height:55px;
+border-radius:17px
+}
+
+.tm-login-brand{
+gap:10px;
+margin-bottom:15px
+}
+
+.tm-login-intro h1{
+font-size:34px
+}
+
+.tm-login-description{
+font-size:9px;
+line-height:1.65;
+margin-top:12px
+}
+
+.tm-login-caption{
+font-size:7px;
+margin-top:12px
+}
+
+.tm-login-form{
+padding:20px;
+border-radius:20px
+}
+
+.tm-field input{
+height:48px
+}
+
+.tm-auth-btn{
+height:50px
+}
 }
 
 
@@ -693,7 +1162,9 @@ font-size:11px;
 margin:5px 0 0
 }
 
-.clock{text-align:right}
+.clock{
+text-align:right
+}
 
 .clock b{
 font:700 29px "Space Grotesk"
@@ -705,21 +1176,33 @@ color:#78869a;
 font-size:10px
 }
 
-.mobilebrand{display:none}
+.mobilebrand{
+display:none
+}
 
 .section{
 display:none;
 animation:in .3s ease
 }
 
-.section.active{display:block}
-
-@keyframes in{
-from{opacity:0;transform:translateY(7px)}
-to{opacity:1;transform:none}
+.section.active{
+display:block
 }
 
-.head{margin-bottom:17px}
+@keyframes in{
+from{
+opacity:0;
+transform:translateY(7px)
+}
+to{
+opacity:1;
+transform:none
+}
+}
+
+.head{
+margin-bottom:17px
+}
 
 .head h2{
 font:700 22px "Space Grotesk";
@@ -818,7 +1301,9 @@ background:var(--c)
 .stat:nth-child(3){--c:var(--yellow)}
 .stat:nth-child(4){--c:var(--pink)}
 
-.stat i{color:var(--c)}
+.stat i{
+color:var(--c)
+}
 
 .stat strong{
 font:700 23px "Space Grotesk";
@@ -934,6 +1419,26 @@ gap:8px;
 margin-bottom:14px
 }
 
+.input,
+.select,
+.area{
+width:100%;
+height:44px;
+border:1px solid #2a394e;
+border-radius:12px;
+background:#090f17;
+color:#eaf0f7;
+padding:0 12px;
+outline:none
+}
+
+.input:focus,
+.select:focus,
+.area:focus{
+border-color:#5b8cff88;
+box-shadow:0 0 0 3px #5b8cff0c
+}
+
 .btn{
 height:44px;
 border:1px solid #2a394e;
@@ -944,7 +1449,9 @@ padding:0 14px;
 font-weight:700
 }
 
-.btn:hover{filter:brightness(1.15)}
+.btn:hover{
+filter:brightness(1.15)
+}
 
 .primary{
 border:0;
@@ -1007,11 +1514,17 @@ color:#06120d;
 border-color:var(--green)
 }
 
-.done{opacity:.55}
+.done{
+opacity:.55
+}
 
-.task b,.row b{font-size:11px}
+.task b,.row b{
+font-size:11px
+}
 
-.task.done .taskname{text-decoration:line-through}
+.task.done .taskname{
+text-decoration:line-through
+}
 
 .meta{
 font-size:9px;
@@ -1060,7 +1573,9 @@ background:#151e2b;
 color:#7d8a9d
 }
 
-.mini:hover{color:white}
+.mini:hover{
+color:white
+}
 
 
 /* work */
@@ -1141,14 +1656,24 @@ font-size:10px;
 color:#9ba6b7
 }
 
-.hist b{color:#fff}
+.hist b{
+color:#fff
+}
 
 
 /* money */
 
-.moneybox:nth-child(1){border-top:2px solid var(--green)}
-.moneybox:nth-child(2){border-top:2px solid var(--pink)}
-.moneybox:nth-child(3){border-top:2px solid var(--blue)}
+.moneybox:nth-child(1){
+border-top:2px solid var(--green)
+}
+
+.moneybox:nth-child(2){
+border-top:2px solid var(--pink)
+}
+
+.moneybox:nth-child(3){
+border-top:2px solid var(--blue)
+}
 
 .moneyform{
 display:grid;
@@ -1166,8 +1691,13 @@ border-bottom:1px solid #1b2532;
 font-size:10px
 }
 
-.in{color:#5fe0a5}
-.out{color:#ff7784}
+.in{
+color:#5fe0a5
+}
+
+.out{
+color:#ff7784
+}
 
 .budgetline{
 display:flex;
@@ -1257,7 +1787,9 @@ border-radius:50%;
 transition:.2s
 }
 
-.toggle.on{background:var(--blue)}
+.toggle.on{
+background:var(--blue)
+}
 
 .toggle.on i{
 transform:translateX(19px)
@@ -1276,7 +1808,9 @@ background:#000b;
 z-index:900
 }
 
-.modal.show{display:grid}
+.modal.show{
+display:grid
+}
 
 .modalbox{
 width:min(430px,100%);
@@ -1323,11 +1857,19 @@ animation:tin .25s
 }
 
 @keyframes tin{
-from{opacity:0;transform:translateX(10px)}
-to{opacity:1;transform:none}
+from{
+opacity:0;
+transform:translateX(10px)
+}
+to{
+opacity:1;
+transform:none
+}
 }
 
-.bottom{display:none}
+.bottom{
+display:none
+}
 
 .mobile-menu-toggle{
 display:none;
@@ -1344,7 +1886,10 @@ flex:0 0 auto;
 transition:.2s
 }
 
-.mobile-menu-toggle:hover{transform:translateY(-1px)}
+.mobile-menu-toggle:hover{
+transform:translateY(-1px)
+}
+
 .mobile-menu-toggle.open{
 background:#ffffff0d;
 border-color:#4b5e78
@@ -1358,7 +1903,9 @@ background:#0006;
 z-index:240
 }
 
-.mobile-menu-backdrop.show{display:block}
+.mobile-menu-backdrop.show{
+display:block
+}
 
 .mobile-menu{
 display:none;
@@ -1380,22 +1927,50 @@ animation:menuIn .18s ease
 padding:5px 9px 8px
 }
 
-.mobile-menu .nav{gap:4px}
-.mobile-menu .nav button{height:45px}
-.mobile-menu .owner{margin-top:8px}
-.mobile-menu .owner{display:block}
-.mobile-menu .nav button.active{background:#ffffff0b}
-.mobile-menu .nav button:hover{background:#ffffff0b}
+.mobile-menu .nav{
+gap:4px
+}
+
+.mobile-menu .nav button{
+height:45px
+}
+
+.mobile-menu .owner{
+margin-top:8px
+}
+
+.mobile-menu .owner{
+display:block
+}
+
+.mobile-menu .nav button.active{
+background:#ffffff0b
+}
+
+.mobile-menu .nav button:hover{
+background:#ffffff0b
+}
 
 @keyframes menuIn{
-from{opacity:0;transform:scale(.96) translateY(-6px)}
-to{opacity:1;transform:none}
+from{
+opacity:0;
+transform:scale(.96) translateY(-6px)
+}
+to{
+opacity:1;
+transform:none
+}
 }
 
 @media(max-width:1050px){
 
-.stats{grid-template-columns:1fr 1fr}
-.grid2{grid-template-columns:1fr}
+.stats{
+grid-template-columns:1fr 1fr
+}
+
+.grid2{
+grid-template-columns:1fr
+}
 
 .form,.moneyform{
 grid-template-columns:1fr 1fr
@@ -1408,7 +1983,9 @@ grid-column:1/-1
 
 @media(max-width:760px){
 
-.side{display:none}
+.side{
+display:none
+}
 
 .main{
 margin:0;
@@ -1438,43 +2015,74 @@ font-size:8px;
 color:#68768b
 }
 
-.greet{display:none}
+.greet{
+display:none
+}
 
-.clock{margin-left:auto}
+.clock{
+margin-left:auto
+}
 
-.clock b{font-size:21px}
-.clock small{font-size:8px}
+.clock b{
+font-size:21px
+}
 
-.hero{padding:18px}
+.clock small{
+font-size:8px
+}
+
+.hero{
+padding:18px
+}
 
 .herorow{
 flex-direction:column;
 align-items:flex-start
 }
 
-.hero h2{font-size:24px}
+.hero h2{
+font-size:24px
+}
 
-.stats{gap:8px}
-.stat{padding:14px}
-.stat strong{font-size:19px}
+.stats{
+gap:8px
+}
 
-.quick{grid-template-columns:1fr 1fr}
+.stat{
+padding:14px
+}
 
-.form,.moneyform{grid-template-columns:1fr}
+.stat strong{
+font-size:19px
+}
 
-.form .btn,.moneyform .btn{grid-column:auto}
+.quick{
+grid-template-columns:1fr 1fr
+}
+
+.form,.moneyform{
+grid-template-columns:1fr
+}
+
+.form .btn,.moneyform .btn{
+grid-column:auto
+}
 
 .task{
 grid-template-columns:24px 1fr auto
 }
 
-.task .badge{display:none}
+.task .badge{
+display:none
+}
 
 .actions{
 grid-column:2/-1
 }
 
-.shift{grid-template-columns:1fr}
+.shift{
+grid-template-columns:1fr
+}
 
 .workstats,.moneytop,.insights,.settings{
 grid-template-columns:1fr
@@ -1484,28 +2092,41 @@ grid-template-columns:1fr
 grid-template-columns:1fr auto auto
 }
 
-.moneyrow .meta{display:none}
+.moneyrow .meta{
+display:none
+}
 
 .row{
 grid-template-columns:1fr auto
 }
 
-.row .due{display:none}
+.row .due{
+display:none
+}
 
 .hist{
 grid-template-columns:1fr 80px
 }
 
-.hist span:last-child{display:none}
+.hist span:last-child{
+display:none
+}
 
-.bottom{display:none}
+.bottom{
+display:none
+}
 
-.mobile-menu-toggle{display:flex}
+.mobile-menu-toggle{
+display:flex
+}
 
-.mobile-menu.show{display:block}
+.mobile-menu.show{
+display:block
+}
 }
 
 @media(prefers-reduced-motion:reduce){
+
 *{
 animation:none!important;
 transition:none!important;
@@ -1517,59 +2138,152 @@ scroll-behavior:auto!important
 
 <body>
 
+
 <!-- ======================================================
-     PRIVATE UNLOCK SCREEN
+     TOMORROW-STYLE PRIVATE UNLOCK SCREEN
 ====================================================== -->
 
 <div id="auth">
 
-    <div class="auth">
+<div class="tm-login-shell">
 
-        <div class="logo">
-            <img src="images/logo.png" alt="LifeDesk">
-        </div>
+<div class="tm-login-intro">
 
-        <h1>Private LifeDesk</h1>
+<div class="tm-login-orbit"></div>
 
-        <p>
-            Your personal command center is protected.
-            Enter the owner credentials to continue.
-        </p>
+<div class="tm-login-brand">
 
-        <div class="error" id="authError"></div>
+<div class="tm-login-logo" style="width:90px;height:90px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.18);box-shadow:0 0 0 6px rgba(255,255,255,.03),0 15px 45px rgba(0,0,0,.28);">
+  <img src="images/logo.png" alt="LifeDesk" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
 
-        <div class="field">
-            <label>Owner ID</label>
-            <input
-                id="user"
-                type="text"
-                autocomplete="off"
-                autocapitalize="none"
-                spellcheck="false"
-                placeholder="Enter owner ID"
-            >
-        </div>
+<div>
+<p class="tm-login-eyebrow">
+Private space
+</p>
 
-        <div class="field">
-            <label>Private password</label>
-            <input
-                id="pass"
-                type="password"
-                autocomplete="off"
-                placeholder="Enter private password"
-            >
-        </div>
+<div class="tm-login-brand-name">
+LifeDesk
+</div>
+</div>
 
-        <button class="authbtn" id="authBtn">
-            <i class="fa-solid fa-lock-open"></i>
-            &nbsp; Unlock LifeDesk
-        </button>
+</div>
 
-        <p>
-            Private local workspace · Owner access only
-        </p>
 
-    </div>
+<h1>
+Your day.
+<span>Under control.</span>
+</h1>
+
+
+<p class="tm-login-description">
+Your personal command center for tasks, work, money,
+reminders and important records. Everything stays
+inside your private local workspace.
+</p>
+
+
+<div class="tm-login-caption">
+<i class="fa-solid fa-circle"></i>
+Private local workspace
+</div>
+
+</div>
+
+
+<div class="tm-login-form">
+
+<div class="tm-form-top">
+
+<strong>Unlock</strong>
+
+<span>
+Private access
+</span>
+
+</div>
+
+
+<p class="tm-form-copy">
+Enter your owner credentials to continue to LifeDesk.
+This workspace is intended for private owner access.
+</p>
+
+
+<div class="tm-login-message" id="authError"></div>
+
+
+<div class="tm-field">
+
+<label>
+<span>Owner ID</span>
+</label>
+
+<div class="tm-field-wrap">
+
+<input
+id="user"
+type="text"
+autocomplete="off"
+autocapitalize="none"
+spellcheck="false"
+placeholder="Enter owner ID"
+>
+
+</div>
+
+</div>
+
+
+<div class="tm-field password">
+
+<label>
+<span>Private password</span>
+</label>
+
+<div class="tm-field-wrap">
+
+<input
+id="pass"
+type="password"
+autocomplete="off"
+placeholder="Enter private password"
+>
+
+<button
+type="button"
+class="tm-password-toggle"
+id="tmPasswordToggle"
+aria-label="Show password"
+>
+<i class="fa-regular fa-eye"></i>
+</button>
+
+</div>
+
+</div>
+
+
+<button
+type="button"
+class="tm-auth-btn"
+id="authBtn"
+>
+
+<i class="fa-solid fa-lock-open"></i>
+&nbsp; Unlock LifeDesk
+
+</button>
+
+
+<div class="tm-login-footer">
+<i class="fa-solid fa-shield-halved"></i>
+Private access · Your personal workspace stays on this device.
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1580,36 +2294,35 @@ scroll-behavior:auto!important
 
 <div id="dataLoader">
 
-    <div class="loader-wrap">
+<div class="loader-wrap">
 
-        <div class="loader-orbit">
+<div class="loader-orbit">
+<div class="loader-logo" style="width:90px;height:90px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+  <img src="images/logo.png" alt="LifeDesk" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
 
-            <div class="loader-logo">
-                <img src="images/logo.png" alt="LifeDesk">
-            </div>
+</div>
 
-        </div>
+<div class="loader-title">
+Accessing LifeDesk
+</div>
 
-        <div class="loader-title">
-            Accessing LifeDesk
-        </div>
+<div class="loader-sub" id="loaderSub">
+Securing your private workspace...
+</div>
 
-        <div class="loader-sub" id="loaderSub">
-            Securing your private workspace...
-        </div>
+<div class="loader-progress">
+<span id="loaderProgress"></span>
+</div>
 
-        <div class="loader-progress">
-            <span id="loaderProgress"></span>
-        </div>
+<div class="loader-status">
+<i class="fa-solid fa-shield-halved"></i>
+<span id="loaderStatus">
+Verifying private data
+</span>
+</div>
 
-        <div class="loader-status">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span id="loaderStatus">
-                Verifying private data
-            </span>
-        </div>
-
-    </div>
+</div>
 
 </div>
 
@@ -1623,107 +2336,53 @@ scroll-behavior:auto!important
 <aside class="side">
 
 <div class="brand">
-    <div class="logo"
-         style="
-            width:42px !important;
-            height:42px !important;
-            min-width:42px !important;
-            min-height:42px !important;
-            max-width:42px !important;
-            max-height:42px !important;
-            flex:0 0 42px !important;
-            overflow:hidden !important;
-            display:grid !important;
-            place-items:center !important;
-            border-radius:13px !important;
-        background:#ccced1 !important;
 
-            box-shadow:0 8px 24px rgba(0, 0, 0, 0.28),0 0 0 1px rgba(255,255,255,.12) !important;
-        ">
+<div
+class="logo"
+style="
+width:42px !important;
+height:42px !important;
+min-width:42px !important;
+min-height:42px !important;
+max-width:42px !important;
+max-height:42px !important;
+flex:0 0 42px !important;
+overflow:hidden !important;
+display:grid !important;
+place-items:center !important;
+border-radius:13px !important;
+background:#ccced1 !important;
+box-shadow:0 8px 24px rgba(0,0,0,.28),0 0 0 1px rgba(255,255,255,.12) !important;
+">
 
-        <img
-            src="images/logo.png"
-            alt="Logo"
-            style="
-                width:100% !important;
-                height:100% !important;
-                max-width:100% !important;
-                max-height:100% !important;
-                object-fit:contain !important;
-                display:block !important;
-                padding:7px !important;
-            "
-            onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-        >
+<img
+src="images/logo.png"
+alt="Logo"
+style="
+width:100% !important;
+height:100% !important;
+max-width:100% !important;
+max-height:100% !important;
+object-fit:contain !important;
+display:block !important;
+padding:7px !important;
+"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+>
 
-        <i class="fa-solid fa-layer-group"
-           style="display:none;"></i>
-    </div>
+<i
+class="fa-solid fa-layer-group"
+style="display:none;"
+></i>
 
-    <div style="min-width:0;">
-        <b>LifeDesk</b>
-        <small>Personal OS</small>
-    </div>
 </div>
-
-<div class="navtitle">Workspace</div>
-
-<nav class="nav" id="nav">
-
-<button class="active" data-s="dashboard">
-<i class="fa-solid fa-grid-2"></i>Dashboard
-</button>
-
-<button data-s="tasks">
-<i class="fa-solid fa-list-check"></i>Tasks
-</button>
-
-<button data-s="work">
-<i class="fa-solid fa-clock"></i>Work / Shift
-</button>
-
-<button data-s="money">
-<i class="fa-solid fa-wallet"></i>Money
-</button>
-
-<button data-s="reminders">
-<i class="fa-solid fa-bell"></i>Reminders
-</button>
-
-<button data-s="documents">
-<i class="fa-solid fa-folder-open"></i>Documents
-</button>
-
-<button data-s="insights">
-<i class="fa-solid fa-chart-line"></i>Insights
-</button>
-
-<button data-s="settings">
-<i class="fa-solid fa-sliders"></i>Settings
-</button>
-
-</nav>
-
-<div class="owner">
-<em>● OWNER SESSION</em>
-<br>
-<b id="ownerName"></b>
-</div>
-
-</aside>
-
-
-<main class="main">
-
-<header class="top">
-
-<div class="mobilebrand">
-
-<div class="logo">
-<img src="images/logo.png" alt="Logo">
-</div>
-
-<div>
+<style> @media (max-width: 768px) {
+  .logo {
+    display: none !important;
+  }
+}
+</style>
+<div style="min-width:0;">
 <b>LifeDesk</b>
 <small>Personal OS</small>
 </div>
@@ -1731,754 +2390,12 @@ scroll-behavior:auto!important
 </div>
 
 
-<div class="greet">
-
-    <h1 id="greet">Good morning</h1>
-
-    <div style="
-        display:flex !important;
-        align-items:center !important;
-        gap:8px !important;
-        width:100% !important;
-        flex-wrap:nowrap !important;
-    ">
-        <p id="sub" style="
-            margin:0 !important;
-            min-width:0 !important;
-            line-height:1.5 !important;
-        ">
-            Your day, organized automatically.
-        </p>
-
-        <img
-            src="images/logo.png"
-            alt="Logo"
-            style="
-                display:block !important;
-                width:28px !important;
-                height:28px !important;
-                min-width:28px !important;
-                max-width:28px !important;
-                min-height:28px !important;
-                max-height:28px !important;
-                object-fit:contain !important;
-                flex:0 0 28px !important;
-                opacity:1 !important;
-                visibility:visible !important;
-                position:static !important;
-            "
-        >
-    </div>
-
-</div>
-
-<div style="display:flex;align-items:center;gap:9px">
-
-<div class="clock">
-<b id="clock">00:00:00</b>
-<small id="date"></small>
-</div>
-
-<button
-class="mobile-menu-toggle"
-id="mobileMenuToggle"
-aria-label="Open menu"
-aria-expanded="false"
->
-<i class="fa-solid fa-bars"></i>
-</button>
-
-</div>
-
-</header>
-
-
-<!-- DASHBOARD -->
-
-<section id="dashboard" class="section active">
-
-<div class="hero">
-
-<div class="herorow">
-
-<div>
-
-<div class="kicker" id="kicker">
-Personal command center
-</div>
-
-<h2 id="heroTitle">
-Make today count.
-</h2>
-
-<p id="heroText">
-Everything important in one place.
-</p>
-
-</div>
-
-<div class="mode">
-<i class="fa-regular fa-clock"></i>
-<span id="period">Morning</span>
-·
-<span id="week">Week</span>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-<i class="fa-solid fa-list-check"></i>
-<strong id="dTask">0%</strong>
-<small>Task completion</small>
-</div>
-
-<div class="stat">
-<i class="fa-solid fa-business-time"></i>
-<strong id="dWork">0h</strong>
-<small>Work today</small>
-</div>
-
-<div class="stat">
-<i class="fa-solid fa-indian-rupee-sign"></i>
-<strong id="dBal">₹0</strong>
-<small>Balance</small>
-</div>
-
-<div class="stat">
-<i class="fa-solid fa-fire"></i>
-<strong id="dStreak">0</strong>
-<small>Productivity streak</small>
-</div>
-
-</div>
-
-
-<div class="grid2">
-
-<div class="panel">
-
-<div class="panelhead">
-<h3>Today at a glance</h3>
-<span id="taskCount">0 tasks</span>
-</div>
-
-<div style="display:flex;justify-content:space-between;font-size:9px;color:#778499;margin-bottom:7px">
-<span>Daily progress</span>
-<b id="dPct">0%</b>
-</div>
-
-<div class="progress">
-<i id="dBar"></i>
-</div>
-
-<div class="quick">
-
-<button data-go="tasks">
-<i class="fa-solid fa-plus"></i>
-<b>Add task</b>
-<small>Capture something</small>
-</button>
-
-<button id="qShift">
-<i class="fa-solid fa-play"></i>
-<b>Start shift</b>
-<small>Track work</small>
-</button>
-
-<button data-go="money">
-<i class="fa-solid fa-wallet"></i>
-<b>Add money</b>
-<small>Income / expense</small>
-</button>
-
-<button data-go="reminders">
-<i class="fa-solid fa-bell"></i>
-<b>Reminder</b>
-<small>Never miss it</small>
-</button>
-
-<button data-go="documents">
-<i class="fa-solid fa-file"></i>
-<b>Document</b>
-<small>Track expiry</small>
-</button>
-
-<button data-go="insights">
-<i class="fa-solid fa-chart-simple"></i>
-<b>Insights</b>
-<small>See patterns</small>
-</button>
-
-</div>
-</div>
-
-
-<div class="panel">
-
-<div class="panelhead">
-<h3>Upcoming</h3>
-<span>Automatic</span>
-</div>
-
-<div id="upcoming" class="list"></div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TASKS -->
-
-<section id="tasks" class="section">
-
-<div class="head">
-<h2>Tasks</h2>
-<p>Smart to-do list with priority, pinning and deadlines.</p>
-<div class="line" style="background:var(--green)"></div>
-</div>
-
-<div class="panel">
-
-<div class="form">
-
-<input class="input" id="taskText" placeholder="What needs to be done?">
-
-<select class="select" id="priority">
-<option value="high">High</option>
-<option value="medium" selected>Medium</option>
-<option value="low">Low</option>
-</select>
-
-<select class="select" id="category">
-<option>Work</option>
-<option>Personal</option>
-<option>Study</option>
-<option>Health</option>
-<option>Other</option>
-</select>
-
-<input class="input" id="deadline" type="datetime-local">
-
-<button class="btn primary" id="addTask">
-Add Task
-</button>
-
-</div>
-
-<div class="panelhead">
-<h3>Today's list</h3>
-<span id="taskSummary">0 / 0</span>
-</div>
-
-<div id="tasksList" class="list"></div>
-
-</div>
-
-</section>
-
-
-<!-- WORK -->
-
-<section id="work" class="section">
-
-<div class="head">
-<h2>Work / Shift</h2>
-<p>Start, pause and finish work with automatic duration tracking.</p>
-<div class="line" style="background:var(--yellow)"></div>
-</div>
-
-<div class="shift">
-
-<div class="status">
-
-<span class="dot" id="shiftDot"></span>
-
-<div>
-
-<b id="shiftStatus">No active shift</b>
-
-<div class="shifttime" id="shiftTimer">
-00:00:00
-</div>
-
-</div>
-
-</div>
-
-<div style="display:flex;gap:7px;flex-wrap:wrap">
-
-<button class="btn green" id="start">
-Start Shift
-</button>
-
-<button class="btn" id="break">
-Break
-</button>
-
-<button class="btn red" id="end">
-End Shift
-</button>
-
-</div>
-
-</div>
-
-
-<div class="workstats">
-
-<div class="workstat">
-<i class="fa-solid fa-clock" style="color:var(--blue)"></i>
-<strong id="wtoday">00:00</strong>
-<small>Active work today</small>
-</div>
-
-<div class="workstat">
-<i class="fa-solid fa-mug-hot" style="color:var(--yellow)"></i>
-<strong id="btoday">00:00</strong>
-<small>Break today</small>
-</div>
-
-<div class="workstat">
-<i class="fa-solid fa-bolt" style="color:var(--pink)"></i>
-<strong id="otoday">00:00</strong>
-<small>Overtime above 8h</small>
-</div>
-
-</div>
-
-
-<div class="panel">
-
-<div class="panelhead">
-<h3>Shift history</h3>
-<span>Local records</span>
-</div>
-
-<div id="history" class="history"></div>
-
-</div>
-
-</section>
-
-
-<!-- MONEY -->
-
-<section id="money" class="section">
-
-<div class="head">
-<h2>Money</h2>
-<p>Income, expenses, balance and monthly budget.</p>
-<div class="line" style="background:var(--pink)"></div>
-</div>
-
-<div class="moneytop">
-
-<div class="moneybox">
-<small>Income</small>
-<strong id="income">₹0</strong>
-</div>
-
-<div class="moneybox">
-<small>Expenses</small>
-<strong id="expense">₹0</strong>
-</div>
-
-<div class="moneybox">
-<small>Balance</small>
-<strong id="balance">₹0</strong>
-</div>
-
-</div>
-
-
-<div class="panel">
-
-<div class="moneyform">
-
-<select class="select" id="mtype">
-<option value="expense">Expense</option>
-<option value="income">Income</option>
-</select>
-
-<input class="input" id="amount" type="number" min="0" placeholder="Amount">
-
-<select class="select" id="mcat">
-<option>Food</option>
-<option>Travel</option>
-<option>Bills</option>
-<option>Shopping</option>
-<option>Education</option>
-<option>Salary</option>
-<option>Other</option>
-</select>
-
-<input class="input" id="mnote" placeholder="Note">
-
-<button class="btn primary" id="addMoney">
-Add
-</button>
-
-</div>
-
-
-<div class="budgetline">
-
-<span>Monthly expense budget</span>
-
-<b id="budgetLabel">₹0 / ₹0</b>
-
-</div>
-
-<div class="progress">
-<i id="budgetBar" style="background:linear-gradient(90deg,var(--pink),var(--orange))"></i>
-</div>
-
-<div style="height:15px"></div>
-
-<div class="panelhead">
-
-<h3>Money history</h3>
-
-<button class="btn" id="csv" style="height:32px;font-size:9px">
-Export CSV
-</button>
-
-</div>
-
-<div id="moneyList"></div>
-
-</div>
-
-</section>
-
-
-<!-- REMINDERS -->
-
-<section id="reminders" class="section">
-
-<div class="head">
-<h2>Reminders</h2>
-<p>One-time and recurring alerts with overdue detection.</p>
-<div class="line" style="background:var(--orange)"></div>
-</div>
-
-<div class="panel">
-
-<div class="form">
-
-<input class="input" id="rtext" placeholder="Reminder title">
-
-<input class="input" id="rdate" type="datetime-local">
-
-<select class="select" id="repeat">
-<option value="none">One time</option>
-<option value="daily">Daily</option>
-<option value="weekly">Weekly</option>
-<option value="monthly">Monthly</option>
-</select>
-
-<select class="select" id="notify">
-<option value="yes">Notify</option>
-<option value="no">Silent</option>
-</select>
-
-<button class="btn primary" id="addReminder">
-Add
-</button>
-
-</div>
-
-<div id="remList" class="list"></div>
-
-</div>
-
-</section>
-
-
-<!-- DOCUMENTS -->
-
-<section id="documents" class="section">
-
-<div class="head">
-<h2>Documents</h2>
-<p>Track document names and expiry dates — not the sensitive contents.</p>
-<div class="line" style="background:var(--purple)"></div>
-</div>
-
-<div class="panel">
-
-<div class="form">
-
-<input class="input" id="docName" placeholder="Document name">
-
-<input class="input" id="docDate" type="date">
-
-<input class="input" id="docNote" placeholder="Note">
-
-<select class="select" id="docType">
-<option>ID</option>
-<option>Education</option>
-<option>Work</option>
-<option>Finance</option>
-<option>Other</option>
-</select>
-
-<button class="btn primary" id="addDoc">
-Add
-</button>
-
-</div>
-
-<div id="docList" class="list"></div>
-
-</div>
-
-</section>
-
-
-<!-- INSIGHTS -->
-
-<section id="insights" class="section">
-
-<div class="head">
-<h2>Insights</h2>
-<p>Descriptive patterns from your own LifeDesk data.</p>
-<div class="line" style="background:var(--cyan)"></div>
-</div>
-
-<div class="insights">
-
-<div class="insight">
-
-<h3>Completion</h3>
-
-<div class="big" id="ipct">0%</div>
-
-<p>
-Today's completed tasks compared with total tasks.
-</p>
-
-<div class="progress">
-<i id="ibar"></i>
-</div>
-
-</div>
-
-
-<div class="insight">
-
-<h3>Streak</h3>
-
-<div class="big" id="istreak">0 days</div>
-
-<p>
-Consecutive days with at least one completed task.
-</p>
-
-</div>
-
-
-<div class="insight">
-
-<h3>Weekly work</h3>
-
-<div class="big" id="iwork">0h</div>
-
-<p>
-Recorded active work during the current week.
-</p>
-
-</div>
-
-
-<div class="insight">
-
-<h3>Last 7 days</h3>
-
-<div class="bars" id="bars"></div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section id="settings" class="section">
-
-<div class="head">
-
-<h2>Settings</h2>
-
-<p>
-Account, backup, notifications and protection.
-</p>
-
-<div class="line" style="background:var(--red)"></div>
-
-</div>
-
-
-<div class="settings">
-
-<div class="setting">
-
-<h3>Owner account</h3>
-
-<p>
-This private LifeDesk uses owner-only access on this browser.
-</p>
-
-<div class="settingactions">
-
-<button class="btn red" id="logout">
-<i class="fa-solid fa-lock"></i>
-Lock & Logout
-</button>
-
-</div>
-
-</div>
-
-
-<div class="setting">
-
-<h3>Appearance</h3>
-
-<div style="display:flex;justify-content:space-between;align-items:center">
-
-<span style="font-size:10px">
-Light interface
-</span>
-
-<button
-class="toggle"
-id="themeToggle"
-aria-label="Toggle light interface"
->
-<i></i>
-</button>
-
-</div>
-
-</div>
-
-
-<div class="setting">
-
-<h3>Notifications</h3>
-
-<p>
-Browser notification permission is optional and depends on your device/browser.
-</p>
-
-<div style="display:flex;justify-content:space-between;align-items:center">
-
-<span style="font-size:10px">
-Browser notifications
-</span>
-
-<button class="toggle" id="ntoggle">
-<i></i>
-</button>
-
-</div>
-
-</div>
-
-
-<div class="setting">
-
-<h3>Workspaces</h3>
-
-<p>My personal workspaces.</p>
-
-<div class="settingactions">
-
-<a class="btn yellow" id="tomorrow" target="_blank" rel="noopener">
-<i class="fa-solid fa-arrow-up-right-from-square"></i>
-Tomorrow Workspace
-</a>
-
-<a class="btn" id="mindflow" target="_blank" rel="noopener">
-<i class="fa-solid fa-code"></i>
-My Workspace
-</a>
-
-</div>
-
-</div>
-
-
-<div class="setting">
-
-<h3>Privacy</h3>
-
-<p>
-LocalStorage is used for this local build. Avoid entering passwords,
-bank credentials, full identity numbers or actual sensitive document contents.
-</p>
-
-<button class="btn red" id="clear">
-Clear app data
-</button>
-
-</div>
-
-
-<div class="setting">
-
-<h3>Build information</h3>
-
-<p>
-
-<b>
-<img
-src="images/logo.png"
-alt="Logo"
-style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:6px;"
->
-LifeDesk Personal OS
-</b>
-
-<br>
-<br>
-
-<span id="storage"></span>
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-</div>
-
-
-<!-- MOBILE MENU -->
-
-<div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
-
-<div class="mobile-menu" id="mobileMenu">
-
 <div class="navtitle">
 Workspace
 </div>
 
-<nav class="nav" id="mobileNav">
+
+<nav class="nav" id="nav">
 
 <button class="active" data-s="dashboard">
 <i class="fa-solid fa-grid-2"></i>
@@ -2522,12 +2439,1468 @@ Settings
 
 </nav>
 
+
+<div class="owner">
+<em>● OWNER SESSION</em>
+<br>
+<b id="ownerName"></b>
+</div>
+
+</aside>
+
+
+<main class="main">
+
+<header class="top">
+
+<div class="mobilebrand">
+
+<div class="logo">
+<img src="images/logo.png" alt="Logo">
+</div>
+
+<div>
+<b>LifeDesk</b>
+<small>Personal OS</small>
+</div>
+
+</div>
+
+
+<div class="greet">
+
+<h1 id="greet">
+Good morning
+</h1>
+<div
+  style="
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    width:100% !important;
+    flex-wrap:nowrap !important;
+  "
+>
+  <p
+    id="sub"
+    style="
+      margin:0 !important;
+      min-width:0 !important;
+      line-height:1.5 !important;
+    "
+  >
+    Your day, organized automatically.
+  </p>
+
+  <img
+    class="mobile-hide-sub-logo"
+    src="images/logo.png"
+    alt="Logo"
+    style="
+      display:block !important;
+      width:28px !important;
+      height:28px !important;
+      min-width:28px !important;
+      max-width:28px !important;
+      min-height:28px !important;
+      max-height:28px !important;
+      object-fit:contain !important;
+      flex:0 0 28px !important;
+      opacity:1 !important;
+      visibility:visible !important;
+      position:static !important;
+    "
+  >
+</div>
+<style> @media (max-width:768px){
+  .mobile-hide-sub-logo{
+    display:none !important;
+  }
+}</style>
+
+</div>
+
+
+<div style="display:flex;align-items:center;gap:9px">
+
+<div class="clock">
+
+<b id="clock">
+00:00:00
+</b>
+
+<small id="date"></small>
+
+</div>
+
+
+<button
+class="mobile-menu-toggle"
+id="mobileMenuToggle"
+aria-label="Open menu"
+aria-expanded="false"
+>
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+</div>
+
+</header>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="section active">
+
+<div class="hero">
+
+<div class="herorow">
+
+<div>
+
+<div class="kicker" id="kicker">
+Personal command center
+</div>
+
+<h2 id="heroTitle">
+Make today count.
+</h2>
+
+<p id="heroText">
+Everything important in one place.
+</p>
+
+</div>
+
+<div class="mode">
+
+<i class="fa-regular fa-clock"></i>
+
+<span id="period">
+Morning
+</span>
+
+·
+
+<span id="week">
+Week
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<i class="fa-solid fa-list-check"></i>
+
+<strong id="dTask">
+0%
+</strong>
+
+<small>
+Task completion
+</small>
+
+</div>
+
+
+<div class="stat">
+
+<i class="fa-solid fa-business-time"></i>
+
+<strong id="dWork">
+0h
+</strong>
+
+<small>
+Work today
+</small>
+
+</div>
+
+
+<div class="stat">
+
+<i class="fa-solid fa-indian-rupee-sign"></i>
+
+<strong id="dBal">
+₹0
+</strong>
+
+<small>
+Balance
+</small>
+
+</div>
+
+
+<div class="stat">
+
+<i class="fa-solid fa-fire"></i>
+
+<strong id="dStreak">
+0
+</strong>
+
+<small>
+Productivity streak
+</small>
+
+</div>
+
+</div>
+
+
+<div class="grid2">
+
+<div class="panel">
+
+<div class="panelhead">
+
+<h3>
+Today at a glance
+</h3>
+
+<span id="taskCount">
+0 tasks
+</span>
+
+</div>
+
+
+<div
+style="
+display:flex;
+justify-content:space-between;
+font-size:9px;
+color:#778499;
+margin-bottom:7px
+">
+
+<span>
+Daily progress
+</span>
+
+<b id="dPct">
+0%
+</b>
+
+</div>
+
+
+<div class="progress">
+<i id="dBar"></i>
+</div>
+
+
+<div class="quick">
+
+<button data-go="tasks">
+
+<i class="fa-solid fa-plus"></i>
+
+<b>
+Add task
+</b>
+
+<small>
+Capture something
+</small>
+
+</button>
+
+
+<button id="qShift">
+
+<i class="fa-solid fa-play"></i>
+
+<b>
+Start shift
+</b>
+
+<small>
+Track work
+</small>
+
+</button>
+
+
+<button data-go="money">
+
+<i class="fa-solid fa-wallet"></i>
+
+<b>
+Add money
+</b>
+
+<small>
+Income / expense
+</small>
+
+</button>
+
+
+<button data-go="reminders">
+
+<i class="fa-solid fa-bell"></i>
+
+<b>
+Reminder
+</b>
+
+<small>
+Never miss it
+</small>
+
+</button>
+
+
+<button data-go="documents">
+
+<i class="fa-solid fa-file"></i>
+
+<b>
+Document
+</b>
+
+<small>
+Track expiry
+</small>
+
+</button>
+
+
+<button data-go="insights">
+
+<i class="fa-solid fa-chart-simple"></i>
+
+<b>
+Insights
+</b>
+
+<small>
+See patterns
+</small>
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="panelhead">
+
+<h3>
+Upcoming
+</h3>
+
+<span>
+Automatic
+</span>
+
+</div>
+
+<div id="upcoming" class="list"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TASKS -->
+
+<section id="tasks" class="section">
+
+<div class="head">
+
+<h2>
+Tasks
+</h2>
+
+<p>
+Smart to-do list with priority, pinning and deadlines.
+</p>
+
+<div
+class="line"
+style="background:var(--green)">
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="form">
+
+<input
+class="input"
+id="taskText"
+placeholder="What needs to be done?"
+>
+
+<select
+class="select"
+id="priority"
+>
+
+<option value="high">
+High
+</option>
+
+<option
+value="medium"
+selected>
+Medium
+</option>
+
+<option value="low">
+Low
+</option>
+
+</select>
+
+
+<select
+class="select"
+id="category"
+>
+
+<option>
+Work
+</option>
+
+<option>
+Personal
+</option>
+
+<option>
+Study
+</option>
+
+<option>
+Health
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+
+<input
+class="input"
+id="deadline"
+type="datetime-local"
+>
+
+
+<button
+class="btn primary"
+id="addTask"
+>
+Add Task
+</button>
+
+</div>
+
+
+<div class="panelhead">
+
+<h3>
+Today's list
+</h3>
+
+<span id="taskSummary">
+0 / 0
+</span>
+
+</div>
+
+
+<div
+id="tasksList"
+class="list">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WORK -->
+
+<section id="work" class="section">
+
+<div class="head">
+
+<h2>
+Work / Shift
+</h2>
+
+<p>
+Start, pause and finish work with automatic duration tracking.
+</p>
+
+<div
+class="line"
+style="background:var(--yellow)">
+</div>
+
+</div>
+
+
+<div class="shift">
+
+<div class="status">
+
+<span
+class="dot"
+id="shiftDot">
+</span>
+
+<div>
+
+<b id="shiftStatus">
+No active shift
+</b>
+
+<div
+class="shifttime"
+id="shiftTimer">
+00:00:00
+</div>
+
+</div>
+
+</div>
+
+
+<div
+style="
+display:flex;
+gap:7px;
+flex-wrap:wrap
+">
+
+<button
+class="btn green"
+id="start">
+Start Shift
+</button>
+
+<button
+class="btn"
+id="break">
+Break
+</button>
+
+<button
+class="btn red"
+id="end">
+End Shift
+</button>
+
+</div>
+
+</div>
+
+
+<div class="workstats">
+
+<div class="workstat">
+
+<i
+class="fa-solid fa-clock"
+style="color:var(--blue)">
+</i>
+
+<strong id="wtoday">
+00:00
+</strong>
+
+<small>
+Active work today
+</small>
+
+</div>
+
+
+<div class="workstat">
+
+<i
+class="fa-solid fa-mug-hot"
+style="color:var(--yellow)">
+</i>
+
+<strong id="btoday">
+00:00
+</strong>
+
+<small>
+Break today
+</small>
+
+</div>
+
+
+<div class="workstat">
+
+<i
+class="fa-solid fa-bolt"
+style="color:var(--pink)">
+</i>
+
+<strong id="otoday">
+00:00
+</strong>
+
+<small>
+Overtime above 8h
+</small>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="panelhead">
+
+<h3>
+Shift history
+</h3>
+
+<span>
+Local records
+</span>
+
+</div>
+
+<div
+id="history"
+class="history">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MONEY -->
+
+<section id="money" class="section">
+
+<div class="head">
+
+<h2>
+Money
+</h2>
+
+<p>
+Income, expenses, balance and monthly budget.
+</p>
+
+<div
+class="line"
+style="background:var(--pink)">
+</div>
+
+</div>
+
+
+<div class="moneytop">
+
+<div class="moneybox">
+
+<small>
+Income
+</small>
+
+<strong id="income">
+₹0
+</strong>
+
+</div>
+
+
+<div class="moneybox">
+
+<small>
+Expenses
+</small>
+
+<strong id="expense">
+₹0
+</strong>
+
+</div>
+
+
+<div class="moneybox">
+
+<small>
+Balance
+</small>
+
+<strong id="balance">
+₹0
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="moneyform">
+
+<select
+class="select"
+id="mtype">
+
+<option value="expense">
+Expense
+</option>
+
+<option value="income">
+Income
+</option>
+
+</select>
+
+
+<input
+class="input"
+id="amount"
+type="number"
+min="0"
+placeholder="Amount"
+>
+
+
+<select
+class="select"
+id="mcat">
+
+<option>
+Food
+</option>
+
+<option>
+Travel
+</option>
+
+<option>
+Bills
+</option>
+
+<option>
+Shopping
+</option>
+
+<option>
+Education
+</option>
+
+<option>
+Salary
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+
+<input
+class="input"
+id="mnote"
+placeholder="Note"
+>
+
+
+<button
+class="btn primary"
+id="addMoney">
+Add
+</button>
+
+</div>
+
+
+<div class="budgetline">
+
+<span>
+Monthly expense budget
+</span>
+
+<b id="budgetLabel">
+₹0 / ₹0
+</b>
+
+</div>
+
+
+<div class="progress">
+
+<i
+id="budgetBar"
+style="
+background:linear-gradient(
+90deg,
+var(--pink),
+var(--orange)
+)">
+</i>
+
+</div>
+
+
+<div style="height:15px"></div>
+
+
+<div class="panelhead">
+
+<h3>
+Money history
+</h3>
+
+<button
+class="btn"
+id="csv"
+style="height:32px;font-size:9px">
+Export CSV
+</button>
+
+</div>
+
+
+<div id="moneyList"></div>
+
+</div>
+
+</section>
+
+
+<!-- REMINDERS -->
+
+<section id="reminders" class="section">
+
+<div class="head">
+
+<h2>
+Reminders
+</h2>
+
+<p>
+One-time and recurring alerts with overdue detection.
+</p>
+
+<div
+class="line"
+style="background:var(--orange)">
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="form">
+
+<input
+class="input"
+id="rtext"
+placeholder="Reminder title"
+>
+
+
+<input
+class="input"
+id="rdate"
+type="datetime-local"
+>
+
+
+<select
+class="select"
+id="repeat">
+
+<option value="none">
+One time
+</option>
+
+<option value="daily">
+Daily
+</option>
+
+<option value="weekly">
+Weekly
+</option>
+
+<option value="monthly">
+Monthly
+</option>
+
+</select>
+
+
+<select
+class="select"
+id="notify">
+
+<option value="yes">
+Notify
+</option>
+
+<option value="no">
+Silent
+</option>
+
+</select>
+
+
+<button
+class="btn primary"
+id="addReminder">
+Add
+</button>
+
+</div>
+
+
+<div
+id="remList"
+class="list">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DOCUMENTS -->
+
+<section id="documents" class="section">
+
+<div class="head">
+
+<h2>
+Documents
+</h2>
+
+<p>
+Track document names and expiry dates — not the sensitive contents.
+</p>
+
+<div
+class="line"
+style="background:var(--purple)">
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="form">
+
+<input
+class="input"
+id="docName"
+placeholder="Document name"
+>
+
+
+<input
+class="input"
+id="docDate"
+type="date"
+>
+
+
+<input
+class="input"
+id="docNote"
+placeholder="Note"
+>
+
+
+<select
+class="select"
+id="docType">
+
+<option>
+ID
+</option>
+
+<option>
+Education
+</option>
+
+<option>
+Work
+</option>
+
+<option>
+Finance
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+
+<button
+class="btn primary"
+id="addDoc">
+Add
+</button>
+
+</div>
+
+
+<div
+id="docList"
+class="list">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- INSIGHTS -->
+
+<section id="insights" class="section">
+
+<div class="head">
+
+<h2>
+Insights
+</h2>
+
+<p>
+Descriptive patterns from your own LifeDesk data.
+</p>
+
+<div
+class="line"
+style="background:var(--cyan)">
+</div>
+
+</div>
+
+
+<div class="insights">
+
+<div class="insight">
+
+<h3>
+Completion
+</h3>
+
+<div
+class="big"
+id="ipct">
+0%
+</div>
+
+<p>
+Today's completed tasks compared with total tasks.
+</p>
+
+<div class="progress">
+<i id="ibar"></i>
+</div>
+
+</div>
+
+
+<div class="insight">
+
+<h3>
+Streak
+</h3>
+
+<div
+class="big"
+id="istreak">
+0 days
+</div>
+
+<p>
+Consecutive days with at least one completed task.
+</p>
+
+</div>
+
+
+<div class="insight">
+
+<h3>
+Weekly work
+</h3>
+
+<div
+class="big"
+id="iwork">
+0h
+</div>
+
+<p>
+Recorded active work during the current week.
+</p>
+
+</div>
+
+
+<div class="insight">
+
+<h3>
+Last 7 days
+</h3>
+
+<div
+class="bars"
+id="bars">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settings" class="section">
+
+<div class="head">
+
+<h2>
+Settings
+</h2>
+
+<p>
+Account, backup, notifications and protection.
+</p>
+
+<div
+class="line"
+style="background:var(--red)">
+</div>
+
+</div>
+
+
+<div class="settings">
+
+<div class="setting">
+
+<h3>
+Owner account
+</h3>
+
+<p>
+This private LifeDesk uses owner-only access on this browser.
+</p>
+
+<div class="settingactions">
+
+<button
+class="btn red"
+id="logout">
+
+<i class="fa-solid fa-lock"></i>
+
+Lock & Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<h3>
+Appearance
+</h3>
+
+<div
+style="
+display:flex;
+justify-content:space-between;
+align-items:center">
+
+<span style="font-size:10px">
+Light interface
+</span>
+
+<button
+class="toggle"
+id="themeToggle"
+aria-label="Toggle light interface">
+
+<i></i>
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<h3>
+Notifications
+</h3>
+
+<p>
+Browser notification permission is optional and depends on your device/browser.
+</p>
+
+<div
+style="
+display:flex;
+justify-content:space-between;
+align-items:center">
+
+<span style="font-size:10px">
+Browser notifications
+</span>
+
+<button
+class="toggle"
+id="ntoggle">
+
+<i></i>
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<h3>
+Workspaces
+</h3>
+
+<p>
+My personal workspaces.
+</p>
+
+<div class="settingactions">
+
+<a
+class="btn yellow"
+id="tomorrow"
+target="_blank"
+rel="noopener">
+
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+Tomorrow Workspace
+
+</a>
+
+
+<a
+class="btn"
+id="mindflow"
+target="_blank"
+rel="noopener">
+
+<i class="fa-solid fa-code"></i>
+
+My Workspace
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<h3>
+Privacy
+</h3>
+
+<p>
+LocalStorage is used for this local build. Avoid entering passwords,
+bank credentials, full identity numbers or actual sensitive document contents.
+</p>
+
+<button
+class="btn red"
+id="clear">
+Clear app data
+</button>
+
+</div>
+
+
+<div class="setting">
+
+<h3>
+Build information
+</h3>
+
+<p>
+
+<b>
+
+<img
+src="images/logo.png"
+alt="Logo"
+style="
+width:22px;
+height:22px;
+object-fit:contain;
+vertical-align:middle;
+margin-right:6px;
+">
+
+LifeDesk Personal OS
+
+</b>
+
+<br>
+<br>
+
+<span id="storage"></span>
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- MOBILE MENU -->
+
+<div
+class="mobile-menu-backdrop"
+id="mobileMenuBackdrop">
+</div>
+
+
+<div
+class="mobile-menu"
+id="mobileMenu">
+
+<div class="navtitle">
+Workspace
+</div>
+
+
+<nav
+class="nav"
+id="mobileNav">
+
+<button
+class="active"
+data-s="dashboard">
+
+<i class="fa-solid fa-grid-2"></i>
+Dashboard
+
+</button>
+
+<button data-s="tasks">
+
+<i class="fa-solid fa-list-check"></i>
+Tasks
+
+</button>
+
+<button data-s="work">
+
+<i class="fa-solid fa-clock"></i>
+Work / Shift
+
+</button>
+
+<button data-s="money">
+
+<i class="fa-solid fa-wallet"></i>
+Money
+
+</button>
+
+<button data-s="reminders">
+
+<i class="fa-solid fa-bell"></i>
+Reminders
+
+</button>
+
+<button data-s="documents">
+
+<i class="fa-solid fa-folder-open"></i>
+Documents
+
+</button>
+
+<button data-s="insights">
+
+<i class="fa-solid fa-chart-line"></i>
+Insights
+
+</button>
+
+<button data-s="settings">
+
+<i class="fa-solid fa-sliders"></i>
+Settings
+
+</button>
+
+</nav>
+
 </div>
 
 
 <!-- MODAL -->
 
-<div class="modal" id="modal">
+<div
+class="modal"
+id="modal">
 
 <div class="modalbox">
 
@@ -2539,11 +3912,15 @@ Confirm
 
 <div class="modalactions">
 
-<button class="btn" id="mcancel">
+<button
+class="btn"
+id="mcancel">
 Cancel
 </button>
 
-<button class="btn red" id="mok">
+<button
+class="btn red"
+id="mok">
 Confirm
 </button>
 
@@ -2554,7 +3931,10 @@ Confirm
 </div>
 
 
-<div class="toasts" id="toasts"></div>
+<div
+class="toasts"
+id="toasts">
+</div>
 
 
 <script>
@@ -2596,45 +3976,79 @@ notifications:false
 
 let db=load();
 
+
 function load(){
+
 try{
+
 return Object.assign(
 fresh(),
-JSON.parse(localStorage.getItem(DBKEY)||'{}')
+JSON.parse(
+localStorage.getItem(DBKEY)||'{}'
+)
 );
+
 }catch{
+
 return fresh()
+
 }
+
 }
+
 
 function save(){
-localStorage.setItem(DBKEY,JSON.stringify(db))
+
+localStorage.setItem(
+DBKEY,
+JSON.stringify(db)
+)
+
 }
+
 
 function uid(){
-return Date.now().toString(36)+Math.random().toString(36).slice(2)
+
+return Date.now().toString(36)+
+Math.random().toString(36).slice(2)
+
 }
+
 
 function pad(n){
+
 return String(n).padStart(2,'0')
+
 }
+
 
 function key(d=new Date()){
+
 return d.toISOString().slice(0,10)
+
 }
+
 
 function month(d=new Date()){
-return d.getFullYear()+'-'+pad(d.getMonth()+1)
+
+return d.getFullYear()+'-'+
+pad(d.getMonth()+1)
+
 }
 
+
 function money(n){
+
 return '₹'+Number(n||0).toLocaleString(
 'en-IN',
 {maximumFractionDigits:2}
 )
+
 }
 
+
 function esc(s){
+
 return String(s??'').replace(
 /[&<>"']/g,
 m=>({
@@ -2645,9 +4059,12 @@ m=>({
 "'":'&#039;'
 }[m])
 )
+
 }
 
+
 function dur(ms){
+
 ms=Math.max(0,ms||0);
 
 let s=Math.floor(ms/1000);
@@ -2656,14 +4073,19 @@ let m=Math.floor(s%3600/60);
 let x=s%60;
 
 return pad(h)+':'+pad(m)+':'+pad(x)
+
 }
 
+
 function short(ms){
+
 ms=Math.max(0,ms||0);
 
 return Math.floor(ms/3600000)+'h '+
 Math.floor(ms%3600000/60000)+'m'
+
 }
+
 
 function toast(t,ic='fa-circle-check'){
 
@@ -2675,9 +4097,15 @@ x.innerHTML=
 '<i class="fa-solid '+ic+'"></i> '+
 esc(t);
 
-document.getElementById('toasts').appendChild(x);
+document
+.getElementById('toasts')
+.appendChild(x);
 
-setTimeout(()=>x.remove(),3200)
+setTimeout(
+()=>x.remove(),
+3200
+)
+
 }
 
 
@@ -2694,36 +4122,111 @@ const pass=document.getElementById('pass');
 const err=document.getElementById('authError');
 const authBtn=document.getElementById('authBtn');
 
+const passwordToggle=
+document.getElementById('tmPasswordToggle');
+
+
+/* =========================================================
+   PASSWORD SHOW / HIDE
+========================================================= */
+
+passwordToggle.onclick=()=>{
+
+const visible=pass.type==='text';
+
+pass.type=visible?'password':'text';
+
+passwordToggle.innerHTML=
+visible
+?
+'<i class="fa-regular fa-eye"></i>'
+:
+'<i class="fa-regular fa-eye-slash"></i>';
+
+passwordToggle.setAttribute(
+'aria-label',
+visible
+?'Show password'
+:'Hide password'
+);
+
+pass.focus();
+
+};
+
+
+/* =========================================================
+   LOGIN MESSAGE
+========================================================= */
 
 function showAuthError(message){
 
 err.textContent=message;
-err.style.display='block'
+
+err.classList.add('show');
 
 }
+
 
 function hideAuthError(){
 
 err.textContent='';
-err.style.display='none'
+
+err.classList.remove('show');
 
 }
 
+
+function shakeAuth(){
+
+const form=
+document.querySelector('.tm-login-form');
+
+form.classList.remove('tm-login-shake');
+
+void form.offsetWidth;
+
+form.classList.add('tm-login-shake');
+
+setTimeout(
+()=>form.classList.remove('tm-login-shake'),
+500
+);
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 function login(){
 
 hideAuthError();
 
-const enteredUser=user.value.trim();
-const enteredPass=pass.value;
+const enteredUser=
+user.value.trim();
+
+const enteredPass=
+pass.value;
+
 
 if(!enteredUser || !enteredPass){
 
 showAuthError(
-'Enter your owner ID and password.'
+'Enter your owner ID and private password.'
 );
 
+shakeAuth();
+
+if(!enteredUser){
+user.focus();
+}else{
+pass.focus();
+}
+
 return
+
 }
 
 
@@ -2733,23 +4236,47 @@ enteredPass!==PRIVATE_OWNER_PASSWORD
 ){
 
 showAuthError(
-'Access denied. Incorrect owner credentials.'
+'Access denied. The owner credentials are incorrect.'
 );
 
 pass.value='';
+
+shakeAuth();
+
 pass.focus();
 
 return
+
 }
 
+
+/* successful authentication */
 
 authBtn.disabled=true;
 
 authBtn.innerHTML=
 '<i class="fa-solid fa-circle-notch fa-spin"></i> Unlocking...';
 
-sessionStorage.setItem(SESSION,'1');
+sessionStorage.setItem(
+SESSION,
+'1'
+);
 
+
+/* success state */
+
+setTimeout(()=>{
+
+hideAuthError();
+
+authBtn.innerHTML=
+'<i class="fa-solid fa-lock-open"></i> Unlocked';
+
+err.classList.remove('show');
+
+setTimeout(()=>{
+
+A.classList.add('tm-auth-hidden');
 
 setTimeout(()=>{
 
@@ -2757,17 +4284,50 @@ A.style.display='none';
 
 showDataLoader();
 
-},450)
+},520);
+
+},350);
+
+},350);
 
 }
 
 
+/* =========================================================
+   ENTER APP WITHOUT LOADER
+   Used only when an existing session is already valid.
+========================================================= */
+
+function enter(){
+
+A.style.display='none';
+
+A.classList.add('tm-auth-hidden');
+
+APP.style.display='flex';
+
+render();
+
+}
+
+
+/* =========================================================
+   DATA LOADER
+========================================================= */
+
 function showDataLoader(){
 
-const loader=document.getElementById('dataLoader');
-const progress=document.getElementById('loaderProgress');
-const sub=document.getElementById('loaderSub');
-const status=document.getElementById('loaderStatus');
+const loader=
+document.getElementById('dataLoader');
+
+const progress=
+document.getElementById('loaderProgress');
+
+const sub=
+document.getElementById('loaderSub');
+
+const status=
+document.getElementById('loaderStatus');
 
 loader.classList.add('show');
 
@@ -2806,6 +4366,7 @@ status:'Access granted'
 
 let i=0;
 
+
 function nextStep(){
 
 if(i>=steps.length){
@@ -2826,13 +4387,17 @@ toast(
 },400);
 
 return
+
 }
+
 
 const step=steps[i++];
 
-progress.style.width=step.p+'%';
+progress.style.width=
+step.p+'%';
 
-sub.textContent=step.sub;
+sub.textContent=
+step.sub;
 
 status.innerHTML=
 '<i class="fa-solid fa-shield-halved"></i> '+
@@ -2850,21 +4415,16 @@ nextStep();
 }
 
 
-function enter(){
-
-A.style.display='none';
-
-APP.style.display='flex';
-
-render();
-
-}
-
+/* =========================================================
+   LOGIN EVENTS
+========================================================= */
 
 authBtn.onclick=login;
 
 
-user.addEventListener('keydown',e=>{
+user.addEventListener(
+'keydown',
+e=>{
 
 if(e.key==='Enter'){
 pass.focus()
@@ -2873,7 +4433,9 @@ pass.focus()
 });
 
 
-pass.addEventListener('keydown',e=>{
+pass.addEventListener(
+'keydown',
+e=>{
 
 if(e.key==='Enter'){
 login()
@@ -2894,6 +4456,7 @@ confirmBox(
 ()=>{
 
 sessionStorage.removeItem(SESSION);
+
 location.reload();
 
 }
@@ -2906,7 +4469,8 @@ location.reload();
    MOBILE MENU
 ========================================================= */
 
-const mobileMenu=document.getElementById('mobileMenu');
+const mobileMenu=
+document.getElementById('mobileMenu');
 
 const mobileMenuToggle=
 document.getElementById('mobileMenuToggle');
@@ -2958,15 +4522,19 @@ mobileMenuToggle.onclick=e=>{
 e.stopPropagation();
 
 mobileMenu.classList.contains('show')
-?closeMobileMenu()
-:openMobileMenu();
+?
+closeMobileMenu()
+:
+openMobileMenu();
 
 };
 
 
-mobileMenuBackdrop.onclick=closeMobileMenu;
+mobileMenuBackdrop.onclick=
+closeMobileMenu;
 
-mobileMenu.onclick=e=>e.stopPropagation();
+mobileMenu.onclick=
+e=>e.stopPropagation();
 
 
 function go(s){
@@ -2980,6 +4548,7 @@ x.id===s
 )
 );
 
+
 document
 .querySelectorAll('[data-s]')
 .forEach(x=>
@@ -2989,7 +4558,9 @@ x.dataset.s===s
 )
 );
 
+
 closeMobileMenu();
+
 
 scrollTo({
 top:0,
@@ -3108,21 +4679,32 @@ p==='Night'
 :'Everything important in one place.';
 
 
-let jan=new Date(d.getFullYear(),0,1);
+let jan=
+new Date(
+d.getFullYear(),
+0,
+1
+);
+
 
 let wn=Math.ceil(
 (((d-jan)/86400000)+jan.getDay()+1)/7
 );
 
+
 document.getElementById('week')
 .textContent='Week '+wn;
+
 
 renderShiftTimer();
 
 }
 
 
-setInterval(clock,1000);
+setInterval(
+clock,
+1000
+);
 
 
 /* =========================================================
@@ -3135,7 +4717,8 @@ let t=db.tasks;
 
 let d=t.length;
 
-let c=t.filter(x=>x.done).length;
+let c=
+t.filter(x=>x.done).length;
 
 return{
 d,
@@ -3160,7 +4743,9 @@ n++;
 else if(i)
 break;
 
-d.setDate(d.getDate()-1);
+d.setDate(
+d.getDate()-1
+);
 
 }
 
@@ -3176,8 +4761,11 @@ return n
 document.getElementById('addTask').onclick=()=>{
 
 let title=
-document.getElementById('taskText')
-.value.trim();
+document
+.getElementById('taskText')
+.value
+.trim();
+
 
 if(!title)
 return toast(
@@ -3211,9 +4799,11 @@ created:new Date().toISOString()
 
 
 document.getElementById('taskText').value='';
+
 document.getElementById('deadline').value='';
 
 save();
+
 render();
 
 toast('Task added');
@@ -3229,7 +4819,8 @@ let a=[...db.tasks].sort(
 (x.done-y.done)
 );
 
-let el=document.getElementById('tasksList');
+let el=
+document.getElementById('tasksList');
 
 
 if(!a.length){
@@ -3250,11 +4841,17 @@ t.deadline &&
 new Date(t.deadline)<new Date();
 
 return `
+
 <div class="task ${t.done?'done':''}">
 
-<button class="check" data-check="${t.id}">
+<button
+class="check"
+data-check="${t.id}">
+
 <i class="fa-solid fa-check"></i>
+
 </button>
+
 
 <div>
 
@@ -3266,6 +4863,7 @@ ${esc(t.title)}
 </b>
 
 </div>
+
 
 <div class="meta">
 
@@ -3291,23 +4889,35 @@ ${ov?
 
 </div>
 
+
 <span class="badge ${t.priority}">
 ${t.priority}
 </span>
 
+
 <div class="actions">
 
-<button class="mini pin" data-id="${t.id}">
+<button
+class="mini pin"
+data-id="${t.id}">
+
 <i class="fa-solid fa-thumbtack"></i>
+
 </button>
 
-<button class="mini del" data-id="${t.id}">
+
+<button
+class="mini del"
+data-id="${t.id}">
+
 <i class="fa-solid fa-trash"></i>
+
 </button>
 
 </div>
 
 </div>
+
 `
 
 }).join('');
@@ -3329,16 +4939,23 @@ t.done=!t.done;
 if(t.done){
 
 db.completedDays[key()]=true;
-t.completedAt=new Date().toISOString();
+
+t.completedAt=
+new Date().toISOString();
 
 }
 
 save();
+
 render();
 
 toast(
-t.done?'Task completed':'Task reopened',
-t.done?'fa-check':'fa-rotate-left'
+t.done
+?'Task completed'
+:'Task reopened',
+t.done
+?'fa-check'
+:'fa-rotate-left'
 );
 
 }
@@ -3358,6 +4975,7 @@ x=>x.id===b.dataset.id
 t.pinned=!t.pinned;
 
 save();
+
 render();
 
 }
@@ -3370,11 +4988,13 @@ el.querySelectorAll('.del')
 
 b.onclick=()=>{
 
-db.tasks=db.tasks.filter(
+db.tasks=
+db.tasks.filter(
 x=>x.id!==b.dataset.id
 );
 
 save();
+
 render();
 
 }
@@ -3409,14 +5029,18 @@ db.breakStarted
 
 br+=
 Date.now()-
-new Date(db.breakStarted).getTime();
+new Date(
+db.breakStarted
+).getTime();
 
 }
 
 return Math.max(
 0,
 Date.now()-
-new Date(db.activeShift.start).getTime()-
+new Date(
+db.activeShift.start
+).getTime()-
 br
 );
 
@@ -3433,6 +5057,7 @@ db.shifts
 0
 );
 
+
 if(
 db.activeShift &&
 db.activeShift.date===key()
@@ -3445,7 +5070,9 @@ db.breakActive &&
 db.breakStarted
 ?
 Date.now()-
-new Date(db.breakStarted).getTime()
+new Date(
+db.breakStarted
+).getTime()
 :0
 );
 
@@ -3465,6 +5092,7 @@ db.shifts
 (a,x)=>a+x.activeMs,
 0
 );
+
 
 if(
 db.activeShift &&
@@ -3503,6 +5131,7 @@ return toast(
 'fa-circle-exclamation'
 );
 
+
 db.activeShift={
 id:uid(),
 start:new Date().toISOString(),
@@ -3514,6 +5143,7 @@ db.breakStarted=null;
 db.breakAccum=0;
 
 save();
+
 render();
 
 toast(
@@ -3532,11 +5162,14 @@ return toast(
 'fa-circle-exclamation'
 );
 
+
 if(db.breakActive){
 
 db.breakAccum+=
 Date.now()-
-new Date(db.breakStarted).getTime();
+new Date(
+db.breakStarted
+).getTime();
 
 db.breakActive=false;
 db.breakStarted=null;
@@ -3548,6 +5181,7 @@ toast(
 }else{
 
 db.breakActive=true;
+
 db.breakStarted=
 new Date().toISOString();
 
@@ -3559,6 +5193,7 @@ toast(
 }
 
 save();
+
 render();
 
 }
@@ -3571,16 +5206,20 @@ return toast(
 'No active shift'
 );
 
+
 if(db.breakActive){
 
 db.breakAccum+=
 Date.now()-
-new Date(db.breakStarted).getTime();
+new Date(
+db.breakStarted
+).getTime();
 
 db.breakActive=false;
 db.breakStarted=null;
 
 }
+
 
 db.shifts.unshift({
 
@@ -3598,10 +5237,13 @@ breakMs:db.breakAccum||0
 
 });
 
+
 db.activeShift=null;
+
 db.breakAccum=0;
 
 save();
+
 render();
 
 toast(
@@ -3613,13 +5255,16 @@ toast(
 
 
 document.getElementById('start').onclick=start;
+
 document.getElementById('break').onclick=brk;
+
 document.getElementById('end').onclick=end;
 
 
 document.getElementById('qShift').onclick=()=>{
 
 go('work');
+
 start();
 
 };
@@ -3628,6 +5273,7 @@ start();
 function renderWork(){
 
 let on=!!db.activeShift;
+
 
 document.getElementById('shiftStatus')
 .textContent=
@@ -3662,9 +5308,11 @@ document.getElementById('wtoday')
 .textContent=
 dur(workMs());
 
+
 document.getElementById('btoday')
 .textContent=
 dur(breakMs());
+
 
 document.getElementById('otoday')
 .textContent=
@@ -3676,7 +5324,8 @@ workMs()-28800000
 );
 
 
-let e=document.getElementById('history');
+let e=
+document.getElementById('history');
 
 
 e.innerHTML=
@@ -3707,23 +5356,32 @@ year:'numeric'
 ${new Date(s.start)
 .toLocaleTimeString(
 'en-IN',
-{hour:'2-digit',minute:'2-digit'}
-)
+{
+hour:'2-digit',
+minute:'2-digit'
 }
+)}
 
 →
 
 ${new Date(s.end)
 .toLocaleTimeString(
 'en-IN',
-{hour:'2-digit',minute:'2-digit'}
+{
+hour:'2-digit',
+minute:'2-digit'
+}
 )}
 
 </span>
 
-<span>${short(s.activeMs)}</span>
+<span>
+${short(s.activeMs)}
+</span>
 
-<span>${short(s.breakMs)} break</span>
+<span>
+${short(s.breakMs)} break
+</span>
 
 </div>
 
@@ -3748,12 +5406,20 @@ function mstats(){
 let inc=
 db.money
 .filter(x=>x.type==='income')
-.reduce((a,x)=>a+x.amount,0);
+.reduce(
+(a,x)=>a+x.amount,
+0
+);
+
 
 let exp=
 db.money
 .filter(x=>x.type==='expense')
-.reduce((a,x)=>a+x.amount,0);
+.reduce(
+(a,x)=>a+x.amount,
+0
+);
+
 
 let mon=
 db.money
@@ -3766,6 +5432,7 @@ x.type==='expense'
 (a,x)=>a+x.amount,
 0
 );
+
 
 return{
 inc,
@@ -3783,6 +5450,7 @@ let n=
 Number(
 document.getElementById('amount').value
 );
+
 
 if(!n||n<=0)
 return toast(
@@ -3811,9 +5479,11 @@ date:new Date().toISOString()
 
 
 document.getElementById('amount').value='';
+
 document.getElementById('mnote').value='';
 
 save();
+
 render();
 
 toast('Money entry added');
@@ -3824,6 +5494,7 @@ toast('Money entry added');
 function renderMoney(){
 
 let s=mstats();
+
 
 document.getElementById('income')
 .textContent=money(s.inc);
@@ -3840,7 +5511,9 @@ document.getElementById('dBal')
 
 let budget=
 Number(
-localStorage.getItem('lifedesk_budget')||0
+localStorage.getItem(
+'lifedesk_budget'
+)||0
 );
 
 
@@ -3853,11 +5526,16 @@ document.getElementById('budgetBar')
 .style.width=
 budget
 ?
-Math.min(100,s.mon/budget*100)+'%'
-:'0%';
+Math.min(
+100,
+s.mon/budget*100
+)+'%'
+:
+'0%';
 
 
-let e=document.getElementById('moneyList');
+let e=
+document.getElementById('moneyList');
 
 
 e.innerHTML=
@@ -3871,28 +5549,42 @@ db.money
 
 <span>
 
-<b>${esc(x.category)}</b>
+<b>
+${esc(x.category)}
+</b>
 
 <span class="meta">
+
 ${esc(x.note||'No note')}
- ·
+·
 ${new Date(x.date)
 .toLocaleDateString('en-IN')}
-</span>
 
 </span>
 
-<span>${x.type}</span>
+</span>
 
-<b class="${x.type==='income'?'in':'out'}">
+
+<span>
+${x.type}
+</span>
+
+
+<b
+class="${x.type==='income'?'in':'out'}">
 
 ${x.type==='income'?'+':'−'}
 ${money(x.amount)}
 
 </b>
 
-<button class="mini md" data-id="${x.id}">
+
+<button
+class="mini md"
+data-id="${x.id}">
+
 <i class="fa-solid fa-trash"></i>
+
 </button>
 
 </div>
@@ -3901,6 +5593,7 @@ ${money(x.amount)}
 .join('')
 
 :
+
 '<div class="empty">'+
 '<i class="fa-solid fa-wallet"></i>'+
 'No money entries.'+
@@ -3918,6 +5611,7 @@ x=>x.id!==b.dataset.id
 );
 
 save();
+
 render();
 
 }
@@ -3942,12 +5636,14 @@ x.note||''
 ]
 .map(v=>
 '"'+
-String(v).replaceAll('"','""')+
+String(v)
+.replaceAll('"','""')+
 '"'
 )
 .join(',')
 )
 .join('\n');
+
 
 download(
 'lifedesk-money.csv',
@@ -3965,12 +5661,16 @@ c,
 document.getElementById('addReminder').onclick=()=>{
 
 let t=
-document.getElementById('rtext')
-.value.trim();
+document
+.getElementById('rtext')
+.value
+.trim();
+
 
 let w=
 document.getElementById('rdate')
 .value;
+
 
 if(!t||!w)
 return toast(
@@ -4000,6 +5700,7 @@ done:false
 document.getElementById('rtext').value='';
 
 save();
+
 render();
 
 toast(
@@ -4012,7 +5713,9 @@ toast(
 
 function renderRem(){
 
-let e=document.getElementById('remList');
+let e=
+document.getElementById('remList');
+
 
 e.innerHTML=
 db.reminders.length
@@ -4020,12 +5723,14 @@ db.reminders.length
 [...db.reminders]
 .sort(
 (a,b)=>
-new Date(a.when)-new Date(b.when)
+new Date(a.when)-
+new Date(b.when)
 )
 .map(r=>{
 
 let d=
 new Date(r.when)-Date.now();
+
 
 let label=
 r.done
@@ -4036,6 +5741,7 @@ r.done
 ?'Due soon'
 :'Upcoming';
 
+
 let cl=
 r.done
 ?'safe'
@@ -4043,13 +5749,16 @@ r.done
 ?'high'
 :'medium';
 
+
 return `
 
 <div class="row">
 
 <div>
 
-<b>${esc(r.text)}</b>
+<b>
+${esc(r.text)}
+</b>
 
 <div class="meta">
 
@@ -4068,16 +5777,27 @@ timeStyle:'short'
 
 </div>
 
+
 <span class="due ${cl}">
 ${label}
 </span>
 
-<button class="mini rd" data-id="${r.id}">
+
+<button
+class="mini rd"
+data-id="${r.id}">
+
 <i class="fa-solid fa-check"></i>
+
 </button>
 
-<button class="mini rx" data-id="${r.id}">
+
+<button
+class="mini rx"
+data-id="${r.id}">
+
 <i class="fa-solid fa-trash"></i>
+
 </button>
 
 </div>
@@ -4088,6 +5808,7 @@ ${label}
 .join('')
 
 :
+
 '<div class="empty">'+
 '<i class="fa-solid fa-bell"></i>'+
 'No reminders.'+
@@ -4099,13 +5820,15 @@ e.querySelectorAll('.rd')
 
 b.onclick=()=>{
 
-let r=db.reminders.find(
+let r=
+db.reminders.find(
 x=>x.id===b.dataset.id
 );
 
 r.done=!r.done;
 
 save();
+
 render();
 
 }
@@ -4124,6 +5847,7 @@ x=>x.id!==b.dataset.id
 );
 
 save();
+
 render();
 
 }
@@ -4140,12 +5864,16 @@ render();
 document.getElementById('addDoc').onclick=()=>{
 
 let n=
-document.getElementById('docName')
-.value.trim();
+document
+.getElementById('docName')
+.value
+.trim();
+
 
 let d=
 document.getElementById('docDate')
 .value;
+
 
 if(!n||!d)
 return toast(
@@ -4171,10 +5899,13 @@ document.getElementById('docType').value
 
 
 document.getElementById('docName').value='';
+
 document.getElementById('docDate').value='';
+
 document.getElementById('docNote').value='';
 
 save();
+
 render();
 
 toast(
@@ -4187,7 +5918,9 @@ toast(
 
 function renderDocs(){
 
-let e=document.getElementById('docList');
+let e=
+document.getElementById('docList');
+
 
 e.innerHTML=
 db.documents.length
@@ -4208,12 +5941,14 @@ Date.now()
 )/86400000
 );
 
+
 let cl=
 days<0
 ?'high'
 :days<=30
 ?'medium'
 :'low';
+
 
 let lab=
 days<0
@@ -4229,18 +5964,21 @@ return `
 
 <div>
 
-<b>${esc(d.name)}</b>
+<b>
+${esc(d.name)}
+</b>
 
 <div class="meta">
 
 ${esc(d.type)}
-
  · Expires
 
 ${new Date(d.expiry+'T00:00:00')
 .toLocaleDateString(
 'en-IN',
-{dateStyle:'medium'}
+{
+dateStyle:'medium'
+}
 )}
 
 ${d.note?' · '+esc(d.note):''}
@@ -4249,12 +5987,18 @@ ${d.note?' · '+esc(d.note):''}
 
 </div>
 
+
 <span class="due ${cl}">
 ${lab}
 </span>
 
-<button class="mini dx" data-id="${d.id}">
+
+<button
+class="mini dx"
+data-id="${d.id}">
+
 <i class="fa-solid fa-trash"></i>
+
 </button>
 
 </div>
@@ -4265,6 +6009,7 @@ ${lab}
 .join('')
 
 :
+
 '<div class="empty">'+
 '<i class="fa-solid fa-folder-open"></i>'+
 'No documents tracked.'+
@@ -4282,6 +6027,7 @@ x=>x.id!==b.dataset.id
 );
 
 save();
+
 render();
 
 }
@@ -4301,15 +6047,18 @@ let s=stats();
 
 let st=streak();
 
+
 document.getElementById('ipct')
 .textContent=s.p+'%';
 
 document.getElementById('ibar')
 .style.width=s.p+'%';
 
+
 document.getElementById('istreak')
 .textContent=
-st+' day'+(st===1?'':'s');
+st+' day'+
+(st===1?'':'s');
 
 
 let ws=new Date();
@@ -4321,6 +6070,7 @@ ws.getDate()-day+1
 );
 
 ws.setHours(0,0,0,0);
+
 
 let we=new Date(ws);
 
@@ -4347,7 +6097,8 @@ document.getElementById('iwork')
 .textContent=short(w);
 
 
-let b=document.getElementById('bars');
+let b=
+document.getElementById('bars');
 
 let arr=[];
 
@@ -4360,13 +6111,17 @@ d.setDate(
 d.getDate()-i
 );
 
+
 let n=
 db.tasks.filter(
 t=>
 t.done &&
 t.completedAt &&
-key(new Date(t.completedAt))===key(d)
+key(
+new Date(t.completedAt)
+)===key(d)
 ).length;
+
 
 arr.push({
 d,
@@ -4388,14 +6143,22 @@ arr.map(x=>`
 
 <div
 class="bar"
-style="height:${Math.max(4,x.n/mx*100)}%"
+style="
+height:${Math.max(
+4,
+x.n/mx*100
+)}%"
 >
 
 <small>
+
 ${x.d.toLocaleDateString(
 'en-IN',
-{weekday:'narrow'}
+{
+weekday:'narrow'
+}
 )}
+
 </small>
 
 </div>
@@ -4413,20 +6176,26 @@ function renderDash(){
 
 let s=stats();
 
+
 document.getElementById('dTask')
 .textContent=s.p+'%';
+
 
 document.getElementById('dPct')
 .textContent=s.p+'%';
 
+
 document.getElementById('dBar')
 .style.width=s.p+'%';
+
 
 document.getElementById('dWork')
 .textContent=short(workMs());
 
+
 document.getElementById('dStreak')
 .textContent=streak();
+
 
 document.getElementById('taskCount')
 .textContent=s.d+' tasks';
@@ -4443,7 +6212,8 @@ new Date(r.when)>new Date()
 )
 .sort(
 (x,y)=>
-new Date(x.when)-new Date(y.when)
+new Date(x.when)-
+new Date(y.when)
 )
 .slice(0,3)
 .forEach(r=>
@@ -4459,8 +6229,9 @@ c:'var(--pink)'
 db.documents
 .filter(
 d=>
-new Date(d.expiry+'T23:59:59')>
-new Date()
+new Date(
+d.expiry+'T23:59:59'
+)>new Date()
 )
 .sort(
 (x,y)=>
@@ -4493,8 +6264,8 @@ a.slice(0,5)
 
 <i
 class="fa-solid ${x.i}"
-style="color:${x.c}"
-></i>
+style="color:${x.c}">
+</i>
 
 ${esc(x.t)}
 
@@ -4521,6 +6292,7 @@ timeStyle:'short'
 .join('')
 
 :
+
 '<div class="empty">'+
 '<i class="fa-solid fa-calendar-check"></i>'+
 'Nothing urgent coming up.'+
@@ -4536,6 +6308,7 @@ timeStyle:'short'
 document.getElementById('tomorrow').href=
 TOMORROW_URL;
 
+
 document.getElementById('mindflow').href=
 MINDFLOW_URL;
 
@@ -4548,14 +6321,19 @@ return toast(
 'Notifications are not supported'
 );
 
+
 let p=
 await Notification.requestPermission();
+
 
 db.settings.notifications=
 p==='granted';
 
+
 save();
+
 renderSettings();
+
 
 toast(
 p==='granted'
@@ -4571,11 +6349,13 @@ function renderSettings(){
 document.getElementById('ownerName')
 .textContent=PRIVATE_OWNER_ID;
 
+
 document.getElementById('ntoggle')
 .classList.toggle(
 'on',
 !!db.settings.notifications
 );
+
 
 document.getElementById('storage')
 .textContent=
@@ -4591,12 +6371,16 @@ JSON.stringify(db).length/1024
 function applyTheme(){
 
 let light=
-localStorage.getItem('lifedesk_theme')==='light';
+localStorage.getItem(
+'lifedesk_theme'
+)==='light';
+
 
 document.body.classList.toggle(
 'light',
 light
 );
+
 
 document.getElementById('themeToggle')
 ?.classList.toggle(
@@ -4604,8 +6388,11 @@ document.getElementById('themeToggle')
 light
 );
 
+
 document
-.querySelector('meta[name=theme-color]')
+.querySelector(
+'meta[name=theme-color]'
+)
 ?.setAttribute(
 'content',
 light
@@ -4631,6 +6418,40 @@ applyTheme();
 
 
 /* =========================================================
+   CLEAR DATA
+========================================================= */
+
+document.getElementById('clear').onclick=()=>{
+
+confirmBox(
+'Clear LifeDesk data?',
+'This will remove your locally stored tasks, money, reminders, documents and work records.',
+()=>{
+
+localStorage.removeItem(DBKEY);
+
+localStorage.removeItem(
+'lifedesk_budget'
+);
+
+db=fresh();
+
+save();
+
+render();
+
+toast(
+'Local LifeDesk data cleared',
+'fa-trash'
+);
+
+}
+);
+
+};
+
+
+/* =========================================================
    MODAL
 ========================================================= */
 
@@ -4639,16 +6460,20 @@ function confirmBox(t,p,yes){
 document.getElementById('mtitle')
 .textContent=t;
 
+
 document.getElementById('mtext')
 .textContent=p;
+
 
 document.getElementById('modal')
 .classList.add('show');
 
 
-let ok=document.getElementById('mok');
+let ok=
+document.getElementById('mok');
 
-let ca=document.getElementById('mcancel');
+let ca=
+document.getElementById('mcancel');
 
 
 let clean=()=>{
@@ -4657,6 +6482,7 @@ document.getElementById('modal')
 .classList.remove('show');
 
 ok.onclick=null;
+
 ca.onclick=null;
 
 };
@@ -4665,9 +6491,11 @@ ca.onclick=null;
 ok.onclick=()=>{
 
 clean();
+
 yes();
 
 };
+
 
 ca.onclick=clean;
 
@@ -4685,14 +6513,18 @@ let b=new Blob(
 {type:t}
 );
 
+
 let a=document.createElement('a');
+
 
 a.href=
 URL.createObjectURL(b);
 
+
 a.download=n;
 
 a.click();
+
 
 setTimeout(
 ()=>URL.revokeObjectURL(a.href),
@@ -4713,10 +6545,12 @@ function reminderEngine(){
 
 let now=Date.now();
 
+
 db.reminders.forEach(r=>{
 
 let w=
 new Date(r.when).getTime();
+
 
 let k=
 r.id+r.when;
@@ -4757,21 +6591,34 @@ toast(
 
 if(r.repeat!=='none'){
 
-let d=new Date(r.when);
+let d=
+new Date(r.when);
+
 
 if(r.repeat==='daily')
-d.setDate(d.getDate()+1);
+d.setDate(
+d.getDate()+1
+);
+
 
 if(r.repeat==='weekly')
-d.setDate(d.getDate()+7);
+d.setDate(
+d.getDate()+7
+);
+
 
 if(r.repeat==='monthly')
-d.setMonth(d.getMonth()+1);
+d.setMonth(
+d.getMonth()+1
+);
+
 
 r.when=
 d.toISOString().slice(0,16);
 
+
 save();
+
 render();
 
 }
@@ -4791,10 +6638,12 @@ reminderEngine,
 
 setInterval(
 ()=>{
+
 if(
 sessionStorage.getItem(SESSION)
 )
 renderWork()
+
 },
 1000
 );
@@ -4811,6 +6660,7 @@ const editable=e=>{
 const t=
 e.target?.tagName?.toLowerCase();
 
+
 return(
 t==='input'||
 t==='textarea'||
@@ -4824,8 +6674,10 @@ e.target?.isContentEditable
 document.addEventListener(
 'contextmenu',
 e=>{
+
 if(!editable(e))
 e.preventDefault()
+
 },
 {capture:true}
 );
@@ -4834,8 +6686,10 @@ e.preventDefault()
 document.addEventListener(
 'dragstart',
 e=>{
+
 if(!editable(e))
 e.preventDefault()
+
 },
 {capture:true}
 );
@@ -4844,8 +6698,10 @@ e.preventDefault()
 document.addEventListener(
 'selectstart',
 e=>{
+
 if(!editable(e))
 e.preventDefault()
+
 },
 {capture:true}
 );
@@ -4854,8 +6710,10 @@ e.preventDefault()
 document.addEventListener(
 'copy',
 e=>{
+
 if(!editable(e))
 e.preventDefault()
+
 },
 {capture:true}
 );
@@ -4864,8 +6722,10 @@ e.preventDefault()
 document.addEventListener(
 'cut',
 e=>{
+
 if(!editable(e))
 e.preventDefault()
+
 },
 {capture:true}
 );
@@ -4874,8 +6734,10 @@ e.preventDefault()
 document.addEventListener(
 'paste',
 e=>{
+
 if(!editable(e))
 e.preventDefault()
+
 },
 {capture:true}
 );
@@ -4899,6 +6761,7 @@ block &&
 ){
 
 e.preventDefault();
+
 e.stopPropagation();
 
 }
@@ -4914,6 +6777,7 @@ e.shiftKey &&
 ){
 
 e.preventDefault();
+
 e.stopPropagation();
 
 }
@@ -4934,13 +6798,21 @@ function render(){
 applyTheme();
 
 renderTasks();
+
 renderWork();
+
 renderMoney();
+
 renderRem();
+
 renderDocs();
+
 renderInsights();
+
 renderDash();
+
 renderSettings();
+
 clock();
 
 }
@@ -4959,6 +6831,9 @@ enter();
 }else{
 
 A.style.display='grid';
+
+A.classList.remove('tm-auth-hidden');
+
 APP.style.display='none';
 
 setTimeout(
